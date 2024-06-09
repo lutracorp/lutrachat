@@ -1,0 +1,9 @@
+---
+name: lutrachat
+
+packages:
+  - packages/*
+
+ide:
+  intellij:
+    moduleNamePrefix: ''

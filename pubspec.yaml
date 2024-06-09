@@ -1,0 +1,15 @@
+---
+name: lutrachat_workspace
+version: 1.0.0
+description: Workspace for LutraChat.
+
+repository: https://github.com/lutracorp/lutrachat
+issue_tracker: https://github.com/lutracorp/lutrachat/issues
+
+publish_to: none
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dev_dependencies:
+  melos: ^6.0.0

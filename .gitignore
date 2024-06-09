@@ -1,0 +1,25 @@
+# ---> Dart
+# Pub
+.dart_tool/
+.packages
+pubspec_overrides.yaml
+
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Generated
+*.g.dart
+*.freezed.dart
+*.schema.dart
+*.mapper.dart
+*.module.dart
+*.config.dart
+*.pb*.dart
+
+# ---> Custom
+# Integrated development environment
+.idea/
+*.iml
+.vs/
+.vscode/

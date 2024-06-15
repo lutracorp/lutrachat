@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
 
 part 'logger.freezed.dart';
-
 part 'logger.g.dart';
 
 /// Log-related configuration.

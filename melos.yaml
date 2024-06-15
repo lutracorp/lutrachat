@@ -4,6 +4,25 @@ name: lutrachat
 packages:
   - packages/*
 
+scripts:
+  build_runner:build:
+    run: dart run build_runner build
+    exec:
+      failFast: true
+      orderDependents: true
+    packageFilters:
+      dependsOn:
+        - build_runner
+
+  build_runner:watch:
+    run: dart run build_runner watch
+    exec:
+      failFast: true
+      orderDependents: true
+    packageFilters:
+      dependsOn:
+        - build_runner
+
 ide:
   intellij:
     moduleNamePrefix: ''

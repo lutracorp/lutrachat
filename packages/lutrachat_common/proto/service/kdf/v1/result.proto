@@ -1,0 +1,10 @@
+package proto.service.kdf.v1;
+
+import "proto/common/serial/v1/typed_message.proto";
+
+// Represents all the data required to validate the password.
+message KDFResult {
+  required bytes key = 1; // The key obtained by hashing the password.
+  required bytes nonce = 2; // The salt used to hash a password.
+  optional proto.common.serial.v1.TypedMessage configuration = 3; // Configuration of the KDF instance used to hash a password.
+}

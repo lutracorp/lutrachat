@@ -23,6 +23,18 @@ scripts:
       dependsOn:
         - build_runner
 
+  buf:generate:
+    run: buf generate
+    exec:
+      failFast: true
+      orderDependents: true
+    packageFilters:
+      fileExists:
+        - buf.yaml
+        - buf.gen.yaml
+      dependsOn:
+        - protobuf
+
 ide:
   intellij:
     moduleNamePrefix: ''

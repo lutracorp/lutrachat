@@ -38,6 +38,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  base32:
+    dependency: transitive
+    description:
+      name: base32
+      sha256: ddad4ebfedf93d4500818ed8e61443b734ffe7cf8a45c668c9b34ef6adde02e2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -158,6 +166,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  cryptography:
+    dependency: "direct main"
+    description:
+      name: cryptography
+      sha256: d146b76d33d94548cf035233fbc2f4338c1242fa119013bead807d033fc4ae05
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.0"
   dart_style:
     dependency: transitive
     description:
@@ -166,6 +182,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
+  ffi:
+    dependency: transitive
+    description:
+      name: ffi
+      sha256: "493f37e7df1804778ff3a53bd691d8692ddf69702cf4c1c1096a2e41b4779e21"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.2"
   file:
     dependency: transitive
     description:
@@ -182,6 +206,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  foxid:
+    dependency: "direct main"
+    description:
+      name: foxid
+      sha256: e298cef5ec5234f8bc4aa20fc0641a8efba22e3bbb2c8c4c1ecc916e0ad894be
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
   freezed:
     dependency: "direct dev"
     description:
@@ -276,10 +308,10 @@ packages:
     dependency: transitive
     description:
       name: js
-      sha256: c1b2e9b5ea78c45e1a0788d29606ba27dc5f71f019f32ca5140f61ef071838cf
+      sha256: f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.1"
+    version: "0.6.7"
   json_annotation:
     dependency: "direct main"
     description:
@@ -384,6 +416,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  protobuf:
+    dependency: "direct main"
+    description:
+      name: protobuf
+      sha256: "68645b24e0716782e58948f8467fd42a880f255096a821f9e7d0ec625b00c84d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   pub_semver:
     dependency: transitive
     description:

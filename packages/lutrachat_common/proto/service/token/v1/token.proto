@@ -1,0 +1,6 @@
+// The data contained in the token.
+message TokenData {
+  required bytes payload = 1; // The payload contained in the token.
+  required bytes signature = 2; // Signature of the rest of the data in the token.
+  required uint32 timestamp = 3; // The time when the token was generated.
+}

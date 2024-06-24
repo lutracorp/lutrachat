@@ -2,9 +2,9 @@ package proto.service.kdf.v1;
 
 import "proto/common/serial/v1/typed_message.proto";
 
-// Represents all the data required to validate the password.
+// Represents all the data required to check the input data for validity.
 message KDFResult {
-  required bytes key = 1; // The key obtained by hashing the password.
-  required bytes nonce = 2; // The salt used to hash a password.
-  optional proto.common.serial.v1.TypedMessage configuration = 3; // Configuration of the KDF instance used to hash a password.
+  required bytes key = 1; // The key resulted by applying KDF to the input data.
+  required bytes nonce = 2; // The nonce used when applying KDF.
+  optional proto.common.serial.v1.TypedMessage configuration = 3; // Configuration of the KDF instance used while applying KDF to input data.
 }

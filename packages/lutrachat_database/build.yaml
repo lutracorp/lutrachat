@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        options:
+          union_key: type
+
+      json_serializable:
+        options:
+          explicit_to_json: true

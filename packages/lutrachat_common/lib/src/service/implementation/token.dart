@@ -5,9 +5,9 @@ import 'package:cryptography/cryptography.dart';
 import 'package:cryptography/helpers.dart';
 import 'package:dart_date/dart_date.dart';
 import 'package:injectable/injectable.dart';
-import 'package:lutrachat_common/src/configuration/token.dart';
 
 import '../../../gen/proto/service/token/v1/token.pb.dart';
+import '../../configuration/token.dart';
 import '../token.dart';
 
 @LazySingleton(as: TokenService)

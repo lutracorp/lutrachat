@@ -5,3 +5,7 @@ analyzer:
   errors:
     invalid_annotation_target: ignore
     implicit_call_tearoffs: ignore
+
+linter:
+  rules:
+    - prefer_relative_imports

@@ -5,14 +5,21 @@ import 'package:cryptography/cryptography.dart';
 import 'package:cryptography/helpers.dart';
 import 'package:dart_date/dart_date.dart';
 import 'package:injectable/injectable.dart';
+import 'package:lutrachat_common/src/configuration/token.dart';
 
 import '../../../gen/proto/service/token/v1/token.pb.dart';
 import '../token.dart';
 
 @LazySingleton(as: TokenService)
 final class TokenServiceImplementation implements TokenService {
+  /// Mac algorithm used to sign tokens.
   static final MacAlgorithm macAlgorithm = Hmac.blake2s();
-  static final Codec<List<int>, String> codec = Base64Codec.urlSafe();
+
+  /// Codec used to encode tokens.
+  final Codec<List<int>, String> codec;
+
+  TokenServiceImplementation(TokenConfiguration configuration)
+      : codec = configuration.codec;
 
   Future<TokenData> signData(
     List<int> payload,

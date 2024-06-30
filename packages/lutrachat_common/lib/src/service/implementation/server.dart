@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:injectable/injectable.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../../configuration/server.dart';
+import '../../model/http/error/response.dart';
+import '../../structure/error/generic.dart';
 import '../logger.dart';
 import '../server.dart';
 
@@ -21,7 +25,13 @@ final class ServerServiceImplementation implements ServerService {
 
   /// Handles errors from handlers.
   Response errorHandler(Object error, StackTrace stackTrace) {
-    switch (error.runtimeType) {
+    switch (error) {
+      case GenericError(:final int code):
+        return Response.badRequest(
+          body: jsonEncode(
+            ErrorResponse(code: code).toJson(),
+          ),
+        );
       default:
         return Response.internalServerError();
     }

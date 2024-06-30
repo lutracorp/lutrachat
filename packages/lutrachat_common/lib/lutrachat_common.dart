@@ -8,3 +8,4 @@ export 'src/service/logger.dart';
 export 'src/service/server.dart';
 export 'src/service/token.dart';
 export 'src/structure/converter/file.dart';
+export 'src/structure/error/generic.dart';

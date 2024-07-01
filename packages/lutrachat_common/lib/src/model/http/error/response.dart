@@ -7,7 +7,10 @@ part 'response.g.dart';
 interface class ErrorResponse with _$ErrorResponse {
   const factory ErrorResponse({
     /// Code of the error.
-    @Default(-1) int code,
+    required int code,
+
+    /// Kind of the error.
+    required String kind,
   }) = _ErrorResponse;
 
   factory ErrorResponse.fromJson(Map<String, Object?> json) =>

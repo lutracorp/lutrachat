@@ -26,10 +26,10 @@ final class ServerServiceImplementation implements ServerService {
   /// Handles errors from handlers.
   Response errorHandler(Object error, StackTrace stackTrace) {
     switch (error) {
-      case GenericError(:final int code):
+      case GenericError(:final int code, :final String kind):
         return Response.badRequest(
           body: jsonEncode(
-            ErrorResponse(code: code).toJson(),
+            ErrorResponse(code: code, kind: kind).toJson(),
           ),
         );
       default:

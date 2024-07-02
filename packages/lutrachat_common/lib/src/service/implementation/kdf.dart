@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:cryptography/cryptography.dart';
@@ -7,10 +6,11 @@ import 'package:injectable/injectable.dart';
 
 import '../../../gen/proto/service/kdf/v1/result.pb.dart';
 import '../../configuration/kdf.dart';
+import '../base/kdf.dart';
 import '../kdf.dart';
 
 @LazySingleton(as: KDFService)
-final class KDFServiceImplementation implements KDFService {
+final class KDFServiceImplementation extends KDFServiceBase {
   final KdfAlgorithm algorithm;
 
   KDFServiceImplementation(KDFConfiguration configuration)
@@ -39,13 +39,6 @@ final class KDFServiceImplementation implements KDFService {
   }
 
   @override
-  Future<KDFResult> derivePassword(String password) async {
-    final Uint8List payload = utf8.encode(password);
-
-    return await derive(payload);
-  }
-
-  @override
   Future<bool> verify(Uint8List payload, KDFResult expectedResult) async {
     final KDFResult newResult = await derive(
       payload,
@@ -53,12 +46,5 @@ final class KDFServiceImplementation implements KDFService {
     );
 
     return constantTimeBytesEquality.equals(newResult.key, expectedResult.key);
-  }
-
-  @override
-  Future<bool> verifyPassword(String password, KDFResult expectedResult) async {
-    final Uint8List payload = utf8.encode(password);
-
-    return await verify(payload, expectedResult);
   }
 }

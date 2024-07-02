@@ -15,6 +15,14 @@ final class UserAccessor extends DatabaseAccessor<DatabaseService>
     with _$UserAccessorMixin {
   UserAccessor(super.attachedDatabase);
 
+  /// Inserts the user into the database and returns it if it did not exist previously.
+  Future<UserTableData?> insertOrIgnore(UserTableCompanion companion) async {
+    return await into(userTable).insertReturningOrNull(
+      companion,
+      mode: InsertMode.insertOrIgnore,
+    );
+  }
+
   /// Find a user by their ID.
   Future<UserTableData?> findById(FOxID id) async {
     final idSql = FOxIDConverter.instance.toSql(id);

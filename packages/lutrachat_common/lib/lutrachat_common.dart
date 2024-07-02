@@ -4,6 +4,8 @@ export 'src/configuration/logger.dart';
 export 'src/configuration/server.dart';
 export 'src/configuration/token.dart';
 export 'src/injectable.dart';
+export 'src/model/enums/error/authentication.dart';
+export 'src/model/http/error/response.dart';
 export 'src/service/kdf.dart';
 export 'src/service/logger.dart';
 export 'src/service/server.dart';

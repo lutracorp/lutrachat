@@ -1,5 +1,5 @@
 ---
-name: lutrachat_api
+name: lutrachat_rest
 version: 1.0.0
 description: REST API for communication with LutraChat.
 

@@ -93,17 +93,4 @@ final class AuthenticationControllerImplementation
 
     throw GenericError(AuthenticationError.invalidCredentials);
   }
-
-  /// Mounts controller to HTTP server.
-  @postConstruct
-  void mount() {
-    loggerService.trace('Mounting authentication controller');
-
-    serverService.router.mount(
-      '/authentication',
-      RouterPlus()
-        ..post('/login', login)
-        ..post('/register', register),
-    );
-  }
 }

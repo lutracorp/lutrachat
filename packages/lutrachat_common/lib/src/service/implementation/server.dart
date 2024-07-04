@@ -7,6 +7,7 @@ import 'package:shelf_plus/shelf_plus.dart';
 import '../../configuration/server.dart';
 import '../../model/http/error/response.dart';
 import '../../structure/error/generic.dart';
+import '../../structure/server/route.dart';
 import '../logger.dart';
 import '../server.dart';
 
@@ -38,16 +39,25 @@ final class ServerServiceImplementation implements ServerService {
   }
 
   @override
+  Future<void> mountRoute(ServerRoute route) async {
+    final Handler handler = await route.configure();
+
+    router.mount(route.prefix, handler);
+
+    loggerService.debug('Mounted ${route.prefix} route.');
+  }
+
+  @override
   @postConstruct
   Future<void> listen() async {
-    loggerService.debug("Staring HTTP server on port ${configuration.port}.");
-
     final Middleware errorHandlerMiddleware =
         createMiddleware(errorHandler: errorHandler);
 
     final Handler handler =
         Pipeline().addMiddleware(errorHandlerMiddleware).addHandler(router);
 
-    await serve(handler, configuration.address, configuration.port);
+    await serve(handler, configuration.address, configuration.port).then((_) {
+      loggerService.debug("Started HTTP server on port ${configuration.port}.");
+    });
   }
 }

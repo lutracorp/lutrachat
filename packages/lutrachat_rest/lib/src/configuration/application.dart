@@ -28,6 +28,7 @@ interface class ApplicationConfiguration with _$ApplicationConfiguration {
 
   Future<GetIt> configureDependencies() async {
     final GetIt instance = GetIt.instance
+      ..enableRegisteringMultipleInstancesOfOneType()
       ..registerSingleton(kdf)
       ..registerSingleton(logger)
       ..registerSingleton(database)

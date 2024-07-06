@@ -23,18 +23,29 @@ final class UserAccessor extends DatabaseAccessor<DatabaseService>
     );
   }
 
-  /// Find a user by their ID.
-  Future<UserTableData?> findById(FOxID id) async {
-    final idSql = FOxIDConverter.instance.toSql(id);
-    final query = select(userTable)..where((entity) => entity.id.equals(idSql));
+  /// Find a user by their ID in canonical string format.
+  Future<UserTableData?> findByCanonicalId(String id) async {
+    final query = select(userTable)
+      ..where(
+        (entity) => entity.id.equals(id),
+      );
 
     return await query.getSingleOrNull();
+  }
+
+  /// Find a user by their ID.
+  Future<UserTableData?> findById(FOxID id) async {
+    final canonicalId = FOxIDConverter.instance.toSql(id);
+
+    return await findByCanonicalId(canonicalId);
   }
 
   /// Find a user by their name.
   Future<UserTableData?> findByName(String username) async {
     final query = select(userTable)
-      ..where((entity) => entity.name.equals(username));
+      ..where(
+        (entity) => entity.name.equals(username),
+      );
 
     return await query.getSingleOrNull();
   }
@@ -42,7 +53,9 @@ final class UserAccessor extends DatabaseAccessor<DatabaseService>
   /// Find a user by their email address.
   Future<UserTableData?> findByEmail(String email) async {
     final query = select(userTable)
-      ..where((entity) => entity.email.equals(email));
+      ..where(
+        (entity) => entity.email.equals(email),
+      );
 
     return await query.getSingleOrNull();
   }

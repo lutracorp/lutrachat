@@ -21,6 +21,13 @@ final class TokenServiceImplementation implements TokenService {
   TokenServiceImplementation(TokenConfiguration configuration)
       : codec = configuration.codec;
 
+  @override
+  TokenData decode(String token) {
+    return TokenData.fromBuffer(
+      codec.decode(token),
+    );
+  }
+
   Future<TokenData> signData(
     List<int> payload,
     Uint8List secretKey, [
@@ -56,9 +63,7 @@ final class TokenServiceImplementation implements TokenService {
 
   @override
   Future<bool> verify(String token, Uint8List secretKey) async {
-    final TokenData initialToken = TokenData.fromBuffer(
-      codec.decode(token),
-    );
+    final TokenData initialToken = decode(token);
 
     final TokenData resignedToken = await signData(
       initialToken.payload,

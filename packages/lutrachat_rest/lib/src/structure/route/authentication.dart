@@ -1,12 +1,12 @@
 import 'package:injectable/injectable.dart';
-import 'package:lutrachat_common/lutrachat_common.dart';
+import 'package:lutrachat_server/lutrachat_server.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../controller/authentication.dart';
 
 /// A route that handles user authentication.
 @LazySingleton(as: ServerRoute)
-final class AuthenticationRoute implements ServerRoute {
+final class AuthenticationRoute extends ServerRoute {
   @override
   final String prefix = '/authentication';
 
@@ -16,7 +16,7 @@ final class AuthenticationRoute implements ServerRoute {
   AuthenticationRoute(this.authenticationController);
 
   @override
-  Future<Handler> configure() async => RouterPlus()
+  Handler configure() => RouterPlus()
     ..post('/login', authenticationController.login)
     ..post('/register', authenticationController.register);
 }

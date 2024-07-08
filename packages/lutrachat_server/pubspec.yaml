@@ -1,7 +1,7 @@
 ---
-name: lutrachat_rest
+name: lutrachat_server
 version: 1.0.0
-description: REST API for communication with LutraChat.
+description: Server code for LutraChat components.
 
 repository: https://github.com/lutracorp/lutrachat
 issue_tracker: https://github.com/lutracorp/lutrachat/issues
@@ -12,36 +12,20 @@ environment:
   sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
-  dartfield: ^1.1.0
   foxid: ^1.2.2
   freezed_annotation: ^2.4.1
   get_it: ^7.7.0
-  injectable: ^2.4.2
+  injectable: ^2.4.1
   json_annotation: ^4.9.0
-  luthor: ^0.4.2
   lutrachat_common: ^1.0.0
   lutrachat_database: ^1.0.0
-  lutrachat_protocol: ^1.0.0
-  lutrachat_server: ^1.0.0
   shelf: ^1.4.2
   shelf_plus: ^1.0.2
 
 dev_dependencies:
   build_runner: ^2.4.11
-  freezed: ^2.5.3
+  freezed: ^2.5.2
   injectable_generator: ^2.6.1
   json_serializable: ^6.8.0
   lints: ^3.0.0
-  luthor_generator: ^0.4.3
-  test: ^1.24.0
-
-dependency_overrides:
-  injectable:
-    git:
-      url: https://github.com/kasefuchs/injectable
-      path: injectable
-
-  injectable_generator:
-    git:
-      url: https://github.com/kasefuchs/injectable
-      path: injectable_generator
+  test: ^1.21.0

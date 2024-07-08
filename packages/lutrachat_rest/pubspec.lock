@@ -247,7 +247,7 @@ packages:
     source: hosted
     version: "1.1.0"
   foxid:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: foxid
       sha256: e298cef5ec5234f8bc4aa20fc0641a8efba22e3bbb2c8c4c1ecc916e0ad894be
@@ -450,6 +450,13 @@ packages:
     dependency: "direct main"
     description:
       path: "../lutrachat_protocol"
+      relative: true
+    source: path
+    version: "1.0.0"
+  lutrachat_server:
+    dependency: "direct main"
+    description:
+      path: "../lutrachat_server"
       relative: true
     source: path
     version: "1.0.0"

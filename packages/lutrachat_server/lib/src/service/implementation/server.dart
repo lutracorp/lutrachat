@@ -1,42 +1,32 @@
-import 'dart:convert';
-
 import 'package:injectable/injectable.dart';
+import 'package:lutrachat_common/lutrachat_common.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../../configuration/server.dart';
-import '../../model/http/error/response.dart';
-import '../../structure/error/generic.dart';
-import '../../structure/server/route.dart';
-import '../logger.dart';
+import '../../structure/base/route.dart';
+import '../../structure/middleware/error.dart';
 import '../server.dart';
 
 @LazySingleton(as: ServerService)
 final class ServerServiceImplementation implements ServerService {
+  /// Internal server router.
+  final RouterPlus router = RouterPlus();
+
   /// Server-related configuration.
   final ServerConfiguration configuration;
 
   /// A service that provides logging.
   final LoggerService loggerService;
 
-  @override
-  final RouterPlus router = RouterPlus();
+  /// Middleware for handling errors.
+  final ErrorMiddleware errorMiddleware;
 
-  ServerServiceImplementation(this.configuration, this.loggerService);
-
-  /// Handles errors from handlers.
-  Response errorHandler(Object error, StackTrace stackTrace) {
-    switch (error) {
-      case GenericError(:final int code, :final String kind):
-        return Response.badRequest(
-          body: jsonEncode(
-            ErrorResponse(code: code, kind: kind).toJson(),
-          ),
-        );
-      default:
-        return Response.internalServerError();
-    }
-  }
+  ServerServiceImplementation(
+    this.configuration,
+    this.loggerService,
+    this.errorMiddleware,
+  );
 
   @override
   Future<void> mountRoute(ServerRoute route) async {
@@ -50,11 +40,8 @@ final class ServerServiceImplementation implements ServerService {
   @override
   @postConstruct
   Future<void> listen() async {
-    final Middleware errorHandlerMiddleware =
-        createMiddleware(errorHandler: errorHandler);
-
     final Handler handler =
-        Pipeline().addMiddleware(errorHandlerMiddleware).addHandler(router);
+        Pipeline().addMiddleware(errorMiddleware).addHandler(router);
 
     await serve(handler, configuration.address, configuration.port).then((_) {
       loggerService.debug("Started HTTP server on port ${configuration.port}.");

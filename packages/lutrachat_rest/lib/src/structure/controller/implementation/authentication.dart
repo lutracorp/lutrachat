@@ -4,6 +4,7 @@ import 'package:dartfield/dartfield.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lutrachat_common/lutrachat_common.dart';
 import 'package:lutrachat_database/lutrachat_database.dart';
+import 'package:lutrachat_server/lutrachat_server.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../../../model/http/authentication/login/request.dart';

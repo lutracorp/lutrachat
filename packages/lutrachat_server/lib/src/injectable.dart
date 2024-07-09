@@ -1,9 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:lutrachat_common/lutrachat_common.dart';
 
-@InjectableInit.microPackage(
-  externalPackageModulesBefore: [
-    ExternalModule(LutrachatCommonPackageModule)
-  ]
-)
+@microPackageInit
 export 'injectable.module.dart';

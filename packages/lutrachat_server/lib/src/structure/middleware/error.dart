@@ -1,7 +1,8 @@
 import 'package:injectable/injectable.dart';
-import 'package:lutrachat_common/lutrachat_common.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
+import '../../model/error/response.dart';
+import '../base/error.dart';
 import '../base/middleware.dart';
 
 /// Middleware for handling errors.
@@ -12,7 +13,7 @@ final class ErrorMiddleware extends ServerMiddleware {
     return (Request request) async {
       try {
         return await innerHandler(request);
-      } on GenericError catch (error) {
+      } on ServerError catch (error) {
         return resolveResponse(
           request,
           ErrorResponse(code: error.code, kind: error.kind),

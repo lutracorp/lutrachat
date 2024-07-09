@@ -29,7 +29,7 @@ final class ServerServiceImplementation implements ServerService {
   );
 
   @override
-  Future<void> mountRoute(ServerRoute route) async {
+  Future<void> mount(ServerRoute route) async {
     final Handler handler = await route.configure();
 
     router.mount(route.prefix, handler);

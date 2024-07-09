@@ -7,10 +7,11 @@ import 'package:lutrachat_database/lutrachat_database.dart';
 import 'package:lutrachat_server/lutrachat_server.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '../../../model/http/authentication/login/request.dart';
-import '../../../model/http/authentication/login/response.dart';
-import '../../../model/http/authentication/register/request.dart';
-import '../../../model/http/authentication/register/response.dart';
+import '../../../enumerable/error/authentication.dart';
+import '../../../model/authentication/login/request.dart';
+import '../../../model/authentication/login/response.dart';
+import '../../../model/authentication/register/request.dart';
+import '../../../model/authentication/register/response.dart';
 import '../authentication.dart';
 
 @LazySingleton(as: AuthenticationController)
@@ -63,9 +64,9 @@ final class AuthenticationControllerImplementation
       );
 
       return RegisterResponse(token: token);
-    } else {
-      throw GenericError(AuthenticationError.credentialsAlreadyTaken);
     }
+
+    throw ServerError(AuthenticationErrorCode.credentialsAlreadyTaken);
   }
 
   @override
@@ -92,6 +93,6 @@ final class AuthenticationControllerImplementation
       }
     }
 
-    throw GenericError(AuthenticationError.invalidCredentials);
+    throw ServerError(AuthenticationErrorCode.invalidCredentials);
   }
 }

@@ -569,7 +569,7 @@ packages:
     source: hosted
     version: "1.5.0"
   source_helper:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: source_helper
       sha256: "6adebc0006c37dd63fe05bca0a929b99f06402fc95aa35bf36d67f5c06de01fd"

@@ -1,5 +1,5 @@
-/// Errors that occur in authentication related components.
-enum AuthenticationError {
+/// Error codes that may occur during authentication.
+enum AuthenticationErrorCode {
   /// The name or mail is already being used by another user.
   credentialsAlreadyTaken,
 

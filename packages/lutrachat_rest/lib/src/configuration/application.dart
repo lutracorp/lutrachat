@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lutrachat_common/lutrachat_common.dart';
 import 'package:lutrachat_database/lutrachat_database.dart';
+import 'package:lutrachat_server/lutrachat_server.dart';
 
 import 'application.config.dart';
 
@@ -11,10 +12,14 @@ part 'application.g.dart';
 
 /// Configuration of all services required to run this application.
 @freezed
-@InjectableInit(externalPackageModulesBefore: [
-  ExternalModule(LutrachatCommonPackageModule),
-  ExternalModule(LutrachatDatabasePackageModule)
-])
+@InjectableInit(
+  externalPackageModulesBefore: [
+    ExternalModule(LutrachatCommonPackageModule),
+    ExternalModule(LutrachatDatabasePackageModule),
+    ExternalModule(LutrachatServerPackageModule)
+  ],
+  throwOnDuplicateDependencies: false,
+)
 interface class ApplicationConfiguration with _$ApplicationConfiguration {
   const ApplicationConfiguration._();
 

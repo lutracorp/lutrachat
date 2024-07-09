@@ -19,6 +19,7 @@ dependencies:
   json_annotation: ^4.9.0
   lutrachat_common: ^1.0.0
   lutrachat_database: ^1.0.0
+  recase: ^4.1.0
   shelf: ^1.4.2
   shelf_plus: ^1.0.2
 

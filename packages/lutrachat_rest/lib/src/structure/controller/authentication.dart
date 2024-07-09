@@ -1,7 +1,7 @@
 import 'package:shelf/shelf.dart';
 
-import '../../model/http/authentication/login/response.dart';
-import '../../model/http/authentication/register/response.dart';
+import '../../model/authentication/login/response.dart';
+import '../../model/authentication/register/response.dart';
 
 /// A controller that performs user authentication.
 abstract interface class AuthenticationController {

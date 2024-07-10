@@ -8,3 +8,10 @@ targets:
       json_serializable:
         options:
           explicit_to_json: true
+
+      drift_dev:
+        options:
+          sql:
+            dialects:
+              - sqlite
+              - postgres

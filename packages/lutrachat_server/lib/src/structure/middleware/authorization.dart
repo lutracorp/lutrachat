@@ -24,27 +24,29 @@ final class AuthorizationMiddleware extends ServerMiddleware {
   @override
   Handler call(Handler innerHandler) {
     return (Request request) async {
-      final String? token = request.headers[HttpHeaders.authorizationHeader];
+      try {
+        final String? token = request.headers[HttpHeaders.authorizationHeader];
 
-      if (token != null) {
-        final TokenData tokenData = tokenService.decode(token);
-        final FOxID userId = FOxID.fromList(tokenData.payload);
-        final UserTableData? user = await userAccessor.findById(userId);
+        if (token != null) {
+          final TokenData tokenData = tokenService.decode(token);
+          final FOxID userId = FOxID.fromList(tokenData.payload);
+          final UserTableData? user = await userAccessor.findById(userId);
 
-        if (user != null) {
-          final bool isTokenValid =
-              await tokenService.verify(token, user.passwordHash);
+          if (user != null) {
+            final bool isTokenValid =
+                await tokenService.verify(token, user.passwordHash);
 
-          if (isTokenValid) {
-            return innerHandler(
-              request.change(context: {
-                'lutrachat/user': user,
-                ...request.context,
-              }),
-            );
+            if (isTokenValid) {
+              return innerHandler(
+                request.change(context: {
+                  'lutrachat/user': user,
+                  ...request.context,
+                }),
+              );
+            }
           }
         }
-      }
+      } catch (_) {}
 
       throw ServerError(AuthorizationErrorCode.invalidToken);
     };

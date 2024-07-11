@@ -34,7 +34,7 @@ final class ServerServiceImplementation implements ServerService {
 
     router.mount(route.prefix, handler);
 
-    loggerService.debug('Mounted ${route.prefix} route.');
+    loggerService.debug('Mounted ${route.prefix} server route.');
   }
 
   @override

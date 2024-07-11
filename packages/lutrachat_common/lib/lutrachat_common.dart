@@ -6,5 +6,6 @@ export 'src/configuration/token.dart';
 export 'src/injectable.dart';
 export 'src/service/kdf.dart';
 export 'src/service/logger.dart';
+export 'src/service/metrics.dart';
 export 'src/service/token.dart';
 export 'src/structure/converter/file.dart';

@@ -472,6 +472,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  prometheus_client:
+    dependency: "direct main"
+    description:
+      name: prometheus_client
+      sha256: "994b731e5b35f4666f50e804bc88a32f55ddcbc6dd2db707f4b8b3374c38f115"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+1"
   protobuf:
     dependency: "direct main"
     description:

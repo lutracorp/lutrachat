@@ -19,6 +19,8 @@ dependencies:
   json_annotation: ^4.9.0
   lutrachat_common: ^1.0.0
   lutrachat_database: ^1.0.0
+  prometheus_client: ^1.0.0+1
+  protobuf: ^3.1.0
   recase: ^4.1.0
   shelf: ^1.4.2
   shelf_plus: ^1.0.2
@@ -30,3 +32,14 @@ dev_dependencies:
   json_serializable: ^6.8.0
   lints: ^3.0.0
   test: ^1.21.0
+
+dependency_overrides:
+  injectable:
+    git:
+      url: https://github.com/kasefuchs/injectable
+      path: injectable
+
+  injectable_generator:
+    git:
+      url: https://github.com/kasefuchs/injectable
+      path: injectable_generator

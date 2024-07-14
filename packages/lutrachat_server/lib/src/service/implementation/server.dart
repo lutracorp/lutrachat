@@ -43,7 +43,12 @@ final class ServerServiceImplementation implements ServerService {
     final Handler handler =
         Pipeline().addMiddleware(errorMiddleware).addHandler(router);
 
-    await serve(handler, configuration.address, configuration.port).then((_) {
+    await serve(
+      handler,
+      configuration.address,
+      configuration.port,
+      poweredByHeader: 'Otters!',
+    ).then((_) {
       loggerService.debug("Started HTTP server on port ${configuration.port}.");
     });
   }

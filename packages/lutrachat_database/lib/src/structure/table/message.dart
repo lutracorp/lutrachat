@@ -24,7 +24,9 @@ abstract class MessageTable extends BaseFOxIDTable {
   IntColumn get type => intEnum<MessageType>()();
 
   /// The flags of the message.
-  Int64Column get flags => int64().map(BitFieldConverter.instance)();
+  Int64Column get flags => int64()
+      .map(BitFieldConverter.instance)
+      .clientDefault(() => BigInt.zero)();
 
   @override
   String get tableName => 'messages';

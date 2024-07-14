@@ -10,10 +10,12 @@ abstract class ChannelTable extends BaseFOxIDTable {
   IntColumn get type => intEnum<ChannelType>()();
 
   /// The name of the channel.
-  TextColumn get name => text().withLength(min: 1, max: 32)();
+  TextColumn get name => text().withLength(min: 1, max: 32).nullable()();
 
   /// The flags of the channel.
-  Int64Column get flags => int64().map(BitFieldConverter.instance)();
+  Int64Column get flags => int64()
+      .map(BitFieldConverter.instance)
+      .clientDefault(() => BigInt.zero)();
 
   @override
   String get tableName => 'channels';

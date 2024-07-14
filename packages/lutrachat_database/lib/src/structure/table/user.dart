@@ -12,7 +12,9 @@ abstract class UserTable extends BaseFOxIDTable {
   TextColumn get email => text().withLength(min: 4, max: 256).unique()();
 
   /// User's flags.
-  Int64Column get flags => int64().map(BitFieldConverter.instance)();
+  Int64Column get flags => int64()
+      .map(BitFieldConverter.instance)
+      .clientDefault(() => BigInt.zero)();
 
   /// A hash of the user's password.
   BlobColumn get passwordHash => blob()();

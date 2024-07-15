@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:lutrachat_common/lutrachat_common.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '../../model/error/response.dart';
+import '../../model/http/error/response.dart';
 import '../base/error.dart';
 import '../base/middleware.dart';
 
@@ -19,15 +19,15 @@ final class ErrorMiddleware extends ServerMiddleware {
     return (Request request) async {
       try {
         return await innerHandler(request);
-      } on ServerError catch (error) {
+      } catch (error, stackTrace) {
+        if (error is! ServerError) {
+          loggerService.error('Error during request.', error, stackTrace);
+        }
+
         return resolveResponse(
           request,
-          ErrorResponse(code: error.code, kind: error.kind),
+          ErrorResponse.fromError(error),
         );
-      } catch (error, stackTrace) {
-        loggerService.error('Error during request.', error, stackTrace);
-
-        return Response.internalServerError();
       }
     };
   }

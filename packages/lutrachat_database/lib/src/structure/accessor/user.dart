@@ -1,6 +1,6 @@
 import 'package:foxid/foxid.dart';
 
-import '../../../lutrachat_database.dart';
+import '../../service/database.dart';
 
 /// Data accessor for the users table.
 abstract interface class UserAccessor {

@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:dartfield/dartfield.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lutrachat_common/lutrachat_common.dart';
 import 'package:lutrachat_database/lutrachat_database.dart';
@@ -8,10 +7,9 @@ import 'package:lutrachat_server/lutrachat_server.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../../../enumerable/error/authentication.dart';
-import '../../../model/authentication/login/request.dart';
-import '../../../model/authentication/login/response.dart';
-import '../../../model/authentication/register/request.dart';
-import '../../../model/authentication/register/response.dart';
+import '../../../model/http/authentication/common/token/response.dart';
+import '../../../model/http/authentication/login/request.dart';
+import '../../../model/http/authentication/register/request.dart';
 import '../authentication.dart';
 
 @LazySingleton(as: AuthenticationController)
@@ -41,9 +39,9 @@ final class AuthenticationControllerImplementation
   );
 
   @override
-  Future<RegisterResponse> register(Request request) async {
-    final RegisterRequest registerPayload =
-        await request.body.as(RegisterRequest.fromJson);
+  Future<AuthenticationTokenResponse> register(Request request) async {
+    final AuthenticationRegisterRequest registerPayload =
+        await request.body.as(AuthenticationRegisterRequest.fromJson);
 
     final Uint8List passwordHash =
         await kdfService.derivePasswordBytes(registerPayload.password);
@@ -53,7 +51,6 @@ final class AuthenticationControllerImplementation
         name: registerPayload.name,
         email: registerPayload.email,
         passwordHash: passwordHash,
-        flags: BitField.empty(),
       ),
     );
 
@@ -63,16 +60,16 @@ final class AuthenticationControllerImplementation
         user.passwordHash,
       );
 
-      return RegisterResponse(token: token);
+      return AuthenticationTokenResponse(token: token);
     }
 
     throw ServerError(AuthenticationErrorCode.credentialsAlreadyTaken);
   }
 
   @override
-  Future<LoginResponse> login(Request request) async {
-    final LoginRequest loginPayload =
-        await request.body.as(LoginRequest.fromJson);
+  Future<AuthenticationTokenResponse> login(Request request) async {
+    final AuthenticationLoginRequest loginPayload =
+        await request.body.as(AuthenticationLoginRequest.fromJson);
 
     final UserTableData? user =
         await userAccessor.findByEmail(loginPayload.email);
@@ -89,7 +86,7 @@ final class AuthenticationControllerImplementation
           user.passwordHash,
         );
 
-        return LoginResponse(token: token);
+        return AuthenticationTokenResponse(token: token);
       }
     }
 

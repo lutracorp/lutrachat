@@ -1,11 +1,12 @@
 import 'package:foxid/foxid.dart';
 
 import '../../service/database.dart';
+import 'base/foxid.dart';
 
 /// Data accessor for the messages table.
-abstract interface class MessageAccessor {
-  /// Inserts the message into the database and returns it.
-  Future<MessageTableData> insert(MessageTableCompanion companion);
+abstract interface class MessageAccessor
+    extends BaseFOxIDAccessor<MessageTableData> {
+  MessageAccessor(super.attachedDatabase);
 
   /// Returns an list of messages in the channel.
   Future<List<MessageTableData>> listByChannelId(

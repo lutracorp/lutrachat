@@ -3,22 +3,22 @@ import 'package:foxid/foxid.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../service/database.dart';
-import '../../table/message.dart';
-import '../message.dart';
+import '../../table/recipient.dart';
 import '../base/foxid.dart';
+import '../recipient.dart';
 
-part 'message.g.dart';
+part 'recipient.g.dart';
 
-@LazySingleton(as: MessageAccessor)
-@DriftAccessor(tables: [MessageTable])
-final class MessageAccessorImplementation
-    extends BaseFOxIDAccessor<MessageTableData>
-    with _$MessageAccessorImplementationMixin
-    implements MessageAccessor {
-  MessageAccessorImplementation(super.attachedDatabase);
+@LazySingleton(as: RecipientAccessor)
+@DriftAccessor(tables: [RecipientTable])
+final class RecipientAccessorImplementation
+    extends BaseFOxIDAccessor<RecipientTableData>
+    with _$RecipientAccessorImplementationMixin
+    implements RecipientAccessor {
+  RecipientAccessorImplementation(super.attachedDatabase);
 
   @override
-  Future<MessageTableData?> findByCanonicalId(String id) async {
+  Future<RecipientTableData?> findByCanonicalId(String id) async {
     final query = select(table)
       ..where(
         (entity) => entity.id.equals(id),
@@ -28,7 +28,7 @@ final class MessageAccessorImplementation
   }
 
   @override
-  Future<List<MessageTableData>> listByChannelId(
+  Future<List<RecipientTableData>> listByChannelId(
     FOxID channel, {
     FOxID? before,
     FOxID? after,
@@ -42,7 +42,7 @@ final class MessageAccessorImplementation
       );
 
   @override
-  Future<List<MessageTableData>> listByCanonicalChannelId(
+  Future<List<RecipientTableData>> listByCanonicalChannelId(
     String channel, {
     String? before,
     String? after,
@@ -73,5 +73,5 @@ final class MessageAccessorImplementation
   }
 
   @override
-  TableInfo<$MessageTableTable, MessageTableData> get table => messageTable;
+  TableInfo<$RecipientTableTable, RecipientTableData> get table => recipientTable;
 }

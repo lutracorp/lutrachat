@@ -4,6 +4,7 @@ import 'package:shelf_plus/shelf_plus.dart';
 
 import '../controller/channel.dart';
 import '../controller/message.dart';
+import '../controller/recipient.dart';
 
 /// A route that handles channel actions.
 @LazySingleton(as: ServerRoute)
@@ -20,10 +21,14 @@ final class ChannelRoute extends ServerRoute {
   /// A controller that performs message actions.
   final MessageController messageController;
 
+  /// A controller that performs channel recipient actions.
+  final RecipientController recipientController;
+
   ChannelRoute(
     this.authorizationMiddleware,
     this.channelController,
     this.messageController,
+    this.recipientController,
   );
 
   @override
@@ -34,13 +39,23 @@ final class ChannelRoute extends ServerRoute {
       use: authorizationMiddleware,
     )
     ..get(
-      '/<target>/messages',
+      '/<channel>/messages',
       messageController.list,
       use: authorizationMiddleware,
     )
     ..post(
-      '/<target>/messages',
+      '/<channel>/messages',
       messageController.create,
+      use: authorizationMiddleware,
+    )
+    ..get(
+      '/<channel>/messages/<message>',
+      messageController.fetch,
+      use: authorizationMiddleware,
+    )
+    ..get(
+      '/<channel>/recipients',
+      recipientController.list,
       use: authorizationMiddleware,
     );
 }

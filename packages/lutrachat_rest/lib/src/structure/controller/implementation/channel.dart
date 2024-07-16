@@ -15,12 +15,12 @@ final class ChannelControllerImplementation implements ChannelController {
   ChannelControllerImplementation(this.channelAccessor);
 
   @override
-  Future<ChannelFetchResponse> fetch(Request request, String target) async {
-    final ChannelTableData? channel =
-        await channelAccessor.findByCanonicalId(target);
+  Future<ChannelFetchResponse> fetch(Request request, String channelId) async {
+    final ChannelTableData? channelData =
+        await channelAccessor.findByCanonicalId(channelId);
 
-    if (channel != null) {
-      return ChannelFetchResponse.fromTableData(channel);
+    if (channelData != null) {
+      return ChannelFetchResponse.fromTableData(channelData);
     }
 
     throw ServerError(ChannelErrorCode.notFound);

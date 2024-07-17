@@ -4,7 +4,7 @@ import 'package:cryptography/cryptography.dart';
 import 'package:cryptography/helpers.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../gen/proto/service/kdf/v1/result.pb.dart';
+import '../../../gen/proto/lutracorp/lutrachat/common/service/kdf/v1/result.pb.dart';
 import '../../configuration/kdf.dart';
 import '../base/kdf.dart';
 import '../kdf.dart';

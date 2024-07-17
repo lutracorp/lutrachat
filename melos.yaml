@@ -24,14 +24,16 @@ scripts:
         - build_runner
 
   buf:generate:
-    run: buf generate
+    run: cd proto && buf generate
     exec:
       failFast: true
       orderDependents: true
     packageFilters:
+      dirExists:
+        - proto
       fileExists:
-        - buf.yaml
-        - buf.gen.yaml
+        - proto/buf.yaml
+        - proto/buf.gen.yaml
       dependsOn:
         - protobuf
 

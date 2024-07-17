@@ -1,4 +1,4 @@
 version: v1
 plugins:
   - plugin: dart
-    out: lib/gen
+    out: ../lib/gen/proto

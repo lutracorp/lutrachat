@@ -1,7 +1,0 @@
-package proto.common.serial.v1;
-
-// A serialized proto-message along with the name of its type.
-message TypedMessage {
-  required string type = 1; // A type of the message.
-  required bytes message = 2; // A serialized proto-message.
-}

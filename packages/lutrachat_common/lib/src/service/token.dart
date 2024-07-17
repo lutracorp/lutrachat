@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import '../../gen/proto/service/token/v1/token.pb.dart';
+import '../../gen/proto/lutracorp/lutrachat/common/service/token/v1/data.pb.dart';
 
 /// A service for signing and verifying tokens.
 abstract interface class TokenService {

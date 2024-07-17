@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import '../../gen/proto/service/kdf/v1/result.pb.dart';
+import '../../gen/proto/lutracorp/lutrachat/common/service/kdf/v1/result.pb.dart';
 
 /// The service that provides the KDF.
 abstract interface class KDFService {

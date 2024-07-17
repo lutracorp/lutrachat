@@ -1,5 +1,5 @@
-export 'gen/proto/service/kdf/v1/result.pb.dart';
-export 'gen/proto/service/token/v1/token.pb.dart';
+export 'gen/proto/lutracorp/lutrachat/common/service/kdf/v1/result.pb.dart';
+export 'gen/proto/lutracorp/lutrachat/common/service/token/v1/data.pb.dart';
 export 'src/configuration/kdf.dart';
 export 'src/configuration/logger.dart';
 export 'src/configuration/token.dart';

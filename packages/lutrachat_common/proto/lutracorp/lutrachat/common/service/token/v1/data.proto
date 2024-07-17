@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package lutracorp.lutrachat.common.service.token.v1;
+
+// The data contained in the token.
+message TokenData {
+  bytes payload = 1; // The payload contained in the token.
+  bytes signature = 2; // Signature of the rest of the data in the token.
+  uint32 timestamp = 3; // The time when the token was generated.
+}

@@ -6,7 +6,7 @@ import 'package:cryptography/helpers.dart';
 import 'package:dart_date/dart_date.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../gen/proto/service/token/v1/token.pb.dart';
+import '../../../gen/proto/lutracorp/lutrachat/common/service/token/v1/data.pb.dart';
 import '../../configuration/token.dart';
 import '../token.dart';
 

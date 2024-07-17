@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import '../../../gen/proto/service/kdf/v1/result.pb.dart';
+import '../../../gen/proto/lutracorp/lutrachat/common/service/kdf/v1/result.pb.dart';
 import '../kdf.dart';
 
 /// The base of service that provides the KDF.

@@ -3,9 +3,9 @@ import 'dart:typed_data';
 
 import 'package:cryptography/cryptography.dart';
 import 'package:cryptography/helpers.dart';
-import 'package:dart_date/dart_date.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../gen/proto/google/protobuf/timestamp.pb.dart';
 import '../../../gen/proto/lutracorp/lutrachat/common/service/token/v1/data.pb.dart';
 import '../../configuration/token.dart';
 import '../token.dart';
@@ -13,13 +13,13 @@ import '../token.dart';
 @LazySingleton(as: TokenService)
 final class TokenServiceImplementation implements TokenService {
   /// Mac algorithm used to sign tokens.
-  static final MacAlgorithm macAlgorithm = Hmac.blake2s();
+  static final MacAlgorithm macAlgorithm = Poly1305();
 
   /// Codec used to encode tokens.
   final Codec<List<int>, String> codec;
 
   TokenServiceImplementation(TokenConfiguration configuration)
-      : codec = configuration.codec;
+      : codec = configuration.codec.instance;
 
   @override
   TokenData decode(String token) {
@@ -37,7 +37,7 @@ final class TokenServiceImplementation implements TokenService {
 
     final TokenData tokenData = TokenData(
       payload: payload,
-      timestamp: timestamp.toUtc().secondsSinceEpoch,
+      timestamp: Timestamp.fromDateTime(timestamp),
     );
 
     final Mac calculatedMac = await macAlgorithm.calculateMac(
@@ -68,10 +68,7 @@ final class TokenServiceImplementation implements TokenService {
     final TokenData resignedToken = await signData(
       initialToken.payload,
       secretKey,
-      DateTime.fromMillisecondsSinceEpoch(
-        initialToken.timestamp * Duration.millisecondsPerSecond,
-        isUtc: true,
-      ),
+      initialToken.timestamp.toDateTime(),
     );
 
     return constantTimeBytesEquality.equals(

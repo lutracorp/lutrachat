@@ -3,6 +3,7 @@ name: lutrachat
 
 packages:
   - packages/*
+  - packages/*/*
 
 scripts:
   build_runner:build:

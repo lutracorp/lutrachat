@@ -1,0 +1,21 @@
+---
+name: lutrachat_backend_gateway
+version: 1.0.0
+description: A gateway for real-time communication with LutraChat.
+
+repository: https://github.com/lutracorp/lutrachat
+issue_tracker: https://github.com/lutracorp/lutrachat/issues
+
+publish_to: none
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  lutrachat_backend_common: ^1.0.0
+  lutrachat_backend_database: ^1.0.0
+  lutrachat_backend_protocol: ^1.0.0
+
+dev_dependencies:
+  lints: ^4.0.0
+  test: ^1.25.8

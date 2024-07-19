@@ -5,6 +5,7 @@ import 'package:shelf_plus/shelf_plus.dart';
 
 import '../../configuration/server.dart';
 import '../../structure/base/route.dart';
+import '../../structure/middleware/cors.dart';
 import '../../structure/middleware/error.dart';
 import '../server.dart';
 
@@ -19,12 +20,16 @@ final class ServerServiceImplementation implements ServerService {
   /// A service that provides logging.
   final LoggerService loggerService;
 
+  /// Middleware for providing CORS support.
+  final CorsMiddleware corsMiddleware;
+
   /// Middleware for handling errors.
   final ErrorMiddleware errorMiddleware;
 
   ServerServiceImplementation(
     this.configuration,
     this.loggerService,
+    this.corsMiddleware,
     this.errorMiddleware,
   );
 
@@ -40,8 +45,10 @@ final class ServerServiceImplementation implements ServerService {
   @override
   @postConstruct
   Future<void> listen() async {
-    final Handler handler =
-        Pipeline().addMiddleware(errorMiddleware).addHandler(router);
+    final Handler handler = Pipeline()
+        .addMiddleware(corsMiddleware)
+        .addMiddleware(errorMiddleware)
+        .addHandler(router);
 
     await serve(
       handler,

@@ -1,6 +1,6 @@
 import 'package:shelf/shelf.dart';
 
-import '../../model/http/authentication/common/token/response.dart';
+import '../../model/http/common/token/response.dart';
 
 /// A controller that performs user authentication.
 abstract interface class AuthenticationController {

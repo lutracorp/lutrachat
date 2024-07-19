@@ -8,6 +8,7 @@ part 'request.g.dart';
 @freezed
 interface class MessageCreateRequest with _$MessageCreateRequest {
   const factory MessageCreateRequest({
+    /// The content of the message.
     @HasMax(2000) required String content,
   }) = _MessageCreateRequest;
 

@@ -1,6 +1,6 @@
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '../../model/http/recipient/common/response.dart';
+import '../../model/http/common/recipient/response.dart';
 
 /// A controller that performs channel recipient actions.
 abstract interface class RecipientController {

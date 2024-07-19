@@ -7,8 +7,8 @@ part 'response.freezed.dart';
 part 'response.g.dart';
 
 @freezed
-interface class ChannelFetchResponse with _$ChannelFetchResponse {
-  const factory ChannelFetchResponse({
+interface class ChannelResponse with _$ChannelResponse {
+  const factory ChannelResponse({
     /// The ID of the channel.
     required FOxID id,
 
@@ -20,13 +20,13 @@ interface class ChannelFetchResponse with _$ChannelFetchResponse {
 
     /// The name of the channel.
     String? name,
-  }) = _ChannelFetchResponse;
+  }) = _ChannelResponse;
 
-  factory ChannelFetchResponse.fromJson(Map<String, Object?> json) =>
-      _$ChannelFetchResponseFromJson(json);
+  factory ChannelResponse.fromJson(Map<String, Object?> json) =>
+      _$ChannelResponseFromJson(json);
 
-  factory ChannelFetchResponse.fromTableData(ChannelTableData data) =>
-      ChannelFetchResponse(
+  factory ChannelResponse.fromTableData(ChannelTableData data) =>
+      ChannelResponse(
         id: data.id,
         type: data.type,
         flags: data.flags,

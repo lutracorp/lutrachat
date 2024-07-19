@@ -5,13 +5,13 @@ import 'base/foxid.dart';
 
 /// A table containing user data.
 abstract class UserTable extends BaseFOxIDTable {
-  /// User's name.
+  /// The user's name.
   TextColumn get name => text().withLength(min: 2, max: 32).unique()();
 
-  /// User's email.
+  /// The user's email address.
   TextColumn get email => text().withLength(min: 4, max: 256).unique()();
 
-  /// User's flags.
+  /// The flags on a user.
   Int64Column get flags => int64()
       .map(BitFieldConverter.instance)
       .clientDefault(() => BigInt.zero)();

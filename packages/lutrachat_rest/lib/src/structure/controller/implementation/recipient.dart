@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:lutrachat_database/lutrachat_database.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '../../../model/http/recipient/common/response.dart';
+import '../../../model/http/common/recipient/response.dart';
 import '../recipient.dart';
 
 @LazySingleton(as: RecipientController)

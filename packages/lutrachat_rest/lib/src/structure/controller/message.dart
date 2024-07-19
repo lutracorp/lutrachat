@@ -1,6 +1,6 @@
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '../../model/http/message/common/response.dart';
+import '../../model/http/common/message/response.dart';
 
 /// A controller that performs message actions.
 abstract interface class MessageController {

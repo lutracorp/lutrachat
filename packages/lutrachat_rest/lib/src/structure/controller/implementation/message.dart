@@ -6,7 +6,7 @@ import 'package:shelf_plus/shelf_plus.dart';
 
 import '../../../enumerable/error/channel.dart';
 import '../../../enumerable/error/message.dart';
-import '../../../model/http/message/common/response.dart';
+import '../../../model/http/common/message/response.dart';
 import '../../../model/http/message/create/request.dart';
 import '../../../model/http/message/list/query.dart';
 import '../message.dart';

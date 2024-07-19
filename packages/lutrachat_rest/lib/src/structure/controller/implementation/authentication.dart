@@ -7,7 +7,7 @@ import 'package:lutrachat_server/lutrachat_server.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../../../enumerable/error/authentication.dart';
-import '../../../model/http/authentication/common/token/response.dart';
+import '../../../model/http/common/token/response.dart';
 import '../../../model/http/authentication/login/request.dart';
 import '../../../model/http/authentication/register/request.dart';
 import '../authentication.dart';

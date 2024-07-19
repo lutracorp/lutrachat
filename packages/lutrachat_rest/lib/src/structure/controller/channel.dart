@@ -1,9 +1,9 @@
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '../../model/http/channel/fetch/response.dart';
+import '../../model/http/common/channel/response.dart';
 
 /// A controller that performs channel actions.
 abstract interface class ChannelController {
   /// Returns a channel object for a given channel ID.
-  Future<ChannelFetchResponse> fetch(Request request, String channelId);
+  Future<ChannelResponse> fetch(Request request, String channelId);
 }

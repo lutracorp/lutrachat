@@ -1,0 +1,25 @@
+name: lutrachat_mobile
+version: 1.0.0
+description: LutraChat mobile application
+
+repository: https://github.com/lutracorp/lutrachat
+issue_tracker: https://github.com/lutracorp/lutrachat/issues
+
+publish_to: none
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get_it: ^7.7.0
+  injectable: ^2.4.2
+
+dev_dependencies:
+  build_runner: ^2.4.11
+  flutter_lints: ^4.0.0
+  injectable_generator: ^2.6.1
+
+flutter:
+  uses-material-design: true

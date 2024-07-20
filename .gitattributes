@@ -1,0 +1,5 @@
+# Assets
+*.webp filter=lfs diff=lfs merge=lfs -text
+
+# Gradle
+gradle-wrapper.jar filter=lfs diff=lfs merge=lfs -text

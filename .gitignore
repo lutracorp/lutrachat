@@ -7,6 +7,7 @@ pubspec_overrides.yaml
 # Flutter
 .flutter-plugins
 .flutter-plugins-dependencies
+GeneratedPluginRegistrant.java
 
 # Generated
 *.g.dart
@@ -16,6 +17,15 @@ pubspec_overrides.yaml
 *.module.dart
 *.config.dart
 *.pb*.dart
+
+# ---> Java / Kotlin
+# Gradle
+build/
+.gradle/
+captures/
+
+# Local
+local.properties
 
 # ---> Custom
 # Integrated development environment

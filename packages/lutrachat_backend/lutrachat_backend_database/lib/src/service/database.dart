@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../configuration/database.dart';
 import '../enumerable/type/channel.dart';
 import '../enumerable/type/message.dart';
+import '../enumerable/type/user.dart';
 import '../structure/converter/bitfield.dart';
 import '../structure/converter/foxid.dart';
 import '../structure/table/channel.dart';

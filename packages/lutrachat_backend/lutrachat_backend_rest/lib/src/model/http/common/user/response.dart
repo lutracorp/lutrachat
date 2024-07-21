@@ -15,6 +15,9 @@ interface class UserResponse with _$UserResponse {
     /// The user's name.
     required String name,
 
+    /// The type of the user.
+    required UserType type,
+
     /// The flags on a user.
     required BitField flags,
   }) = _UserResponse;
@@ -25,6 +28,7 @@ interface class UserResponse with _$UserResponse {
   factory UserResponse.fromTableData(UserTableData data) => UserResponse(
         id: data.id,
         name: data.name,
+        type: data.type,
         flags: data.flags,
       );
 }

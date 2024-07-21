@@ -41,7 +41,6 @@ final class MessageControllerImplementation implements MessageController {
           channel: FOxID.fromJson(channelId),
           author: userTableData.id,
           content: messageCreatePayload.content,
-          type: MessageType.standard,
         ),
       );
 

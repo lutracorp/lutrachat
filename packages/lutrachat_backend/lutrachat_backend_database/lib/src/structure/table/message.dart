@@ -21,7 +21,8 @@ abstract class MessageTable extends BaseFOxIDTable {
   TextColumn get content => text().withLength(min: 1, max: 2000)();
 
   /// The type of the message.
-  IntColumn get type => intEnum<MessageType>()();
+  IntColumn get type =>
+      intEnum<MessageType>().clientDefault(() => MessageType.standard.index)();
 
   /// The flags of the message.
   Int64Column get flags => int64()

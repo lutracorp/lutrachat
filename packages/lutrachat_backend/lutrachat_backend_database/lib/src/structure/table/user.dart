@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 
+import '../../enumerable/type/user.dart';
 import '../converter/bitfield.dart';
 import 'base/foxid.dart';
 
@@ -11,13 +12,17 @@ abstract class UserTable extends BaseFOxIDTable {
   /// The user's email address.
   TextColumn get email => text().withLength(min: 4, max: 256).unique()();
 
+  /// A hash of the user's password.
+  BlobColumn get passwordHash => blob()();
+
+  /// The type of the user.
+  IntColumn get type =>
+      intEnum<UserType>().clientDefault(() => UserType.user.index)();
+
   /// The flags on a user.
   Int64Column get flags => int64()
       .map(BitFieldConverter.instance)
       .clientDefault(() => BigInt.zero)();
-
-  /// A hash of the user's password.
-  BlobColumn get passwordHash => blob()();
 
   @override
   String get tableName => 'users';

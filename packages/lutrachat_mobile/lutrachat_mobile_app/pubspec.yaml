@@ -1,6 +1,6 @@
-name: lutrachat_mobile
+name: lutrachat_mobile_app
 version: 1.0.0
-description: LutraChat mobile application
+description: LutraChat mobile application.
 
 repository: https://github.com/lutracorp/lutrachat
 issue_tracker: https://github.com/lutracorp/lutrachat/issues

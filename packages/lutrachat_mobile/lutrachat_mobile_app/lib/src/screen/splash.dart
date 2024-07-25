@@ -18,10 +18,7 @@ final class SplashScreen extends StatelessWidget {
             ),
             const Text(
               'DID YOU KNOW',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 3),

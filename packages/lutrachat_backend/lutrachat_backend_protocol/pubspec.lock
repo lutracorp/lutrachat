@@ -234,26 +234,26 @@ packages:
     dependency: "direct main"
     description:
       name: foxid
-      sha256: e298cef5ec5234f8bc4aa20fc0641a8efba22e3bbb2c8c4c1ecc916e0ad894be
+      sha256: "2339a2a109cd3f6e6d529dbf2d8561410b14d5b31e787dacf9652b947b4365a5"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.2"
+    version: "1.3.0"
   freezed:
     dependency: "direct dev"
     description:
       name: freezed
-      sha256: a16ca81a9eb50c0aa236c62ff544c450119a107b4752020b152bea76f8ca4e63
+      sha256: "44c19278dd9d89292cf46e97dc0c1e52ce03275f40a97c5a348e802a924bf40e"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.6"
+    version: "2.5.7"
   freezed_annotation:
     dependency: "direct main"
     description:
       name: freezed_annotation
-      sha256: f9f6597ac43cc262fa7d7f2e65259a6060c23a560525d1f2631be374540f2a9b
+      sha256: c2e2d632dd9b8a2b7751117abcfc2b4888ecfe181bd9fca7170d9ef02e595fe2
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.3"
+    version: "2.4.4"
   frontend_server_client:
     dependency: transitive
     description:
@@ -282,10 +282,10 @@ packages:
     dependency: transitive
     description:
       name: graphs
-      sha256: aedc5a15e78fc65a6e23bcd927f24c64dd995062bcd1ca6eda65a3cff92a4d19
+      sha256: "741bbf84165310a68ff28fe9e727332eef1407342fca52759cb21ad8177bb8d0"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.1"
+    version: "2.3.2"
   hotreloader:
     dependency: transitive
     description:
@@ -323,19 +323,19 @@ packages:
     description:
       path: injectable
       ref: HEAD
-      resolved-ref: a7f3791b6a31384123abf7fd926fc1edc295da6c
+      resolved-ref: "828976b0c7c172041f833a5f82e8af6d24a6d00d"
       url: "https://github.com/kasefuchs/injectable"
     source: git
-    version: "2.4.2"
+    version: "2.4.4"
   injectable_generator:
     dependency: "direct dev"
     description:
       path: injectable_generator
       ref: HEAD
-      resolved-ref: a7f3791b6a31384123abf7fd926fc1edc295da6c
+      resolved-ref: "828976b0c7c172041f833a5f82e8af6d24a6d00d"
       url: "https://github.com/kasefuchs/injectable"
     source: git
-    version: "2.6.1"
+    version: "2.6.2"
   intl:
     dependency: transitive
     description:
@@ -388,10 +388,10 @@ packages:
     dependency: transitive
     description:
       name: logger
-      sha256: af05cc8714f356fd1f3888fb6741cbe9fbe25cdb6eedbab80e1a6db21047d4a4
+      sha256: "697d067c60c20999686a0add96cf6aba723b3aa1f83ecf806a8097231529ec32"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.4.0"
   logging:
     dependency: transitive
     description:

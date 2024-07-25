@@ -38,6 +38,9 @@ scripts:
       dependsOn:
         - protobuf
 
+  pub:outdated:
+    exec: dart pub outdated
+
 ide:
   intellij:
     moduleNamePrefix: ''

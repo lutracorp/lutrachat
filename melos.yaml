@@ -7,7 +7,7 @@ packages:
 
 scripts:
   build_runner:build:
-    run: dart run build_runner build
+    run: dart run build_runner build --delete-conflicting-outputs
     exec:
       failFast: true
       orderDependents: true
@@ -16,7 +16,7 @@ scripts:
         - build_runner
 
   build_runner:watch:
-    run: dart run build_runner watch
+    run: dart run build_runner watch --delete-conflicting-outputs
     exec:
       failFast: true
       orderDependents: true

@@ -41,6 +41,15 @@ scripts:
   pub:outdated:
     exec: dart pub outdated
 
+  slang:
+    run: dart run slang
+    exec:
+      failFast: true
+      orderDependents: true
+    packageFilters:
+      dependsOn:
+        - slang
+
 ide:
   intellij:
     moduleNamePrefix: ''

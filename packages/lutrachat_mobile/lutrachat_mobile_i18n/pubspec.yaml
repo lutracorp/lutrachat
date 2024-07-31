@@ -1,0 +1,21 @@
+---
+name: lutrachat_mobile_i18n
+version: 1.0.0
+description: I18n package for LutraChat mobile application.
+
+repository: https://github.com/lutracorp/lutrachat
+issue_tracker: https://github.com/lutracorp/lutrachat/issues
+
+publish_to: none
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  slang: ^3.31.1
+  slang_flutter: ^3.31.0
+
+dev_dependencies:
+  flutter_lints: ^4.0.0

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lutrachat_mobile_i18n/gen/i18n/strings.g.dart';
 
 import 'screen/splash.dart';
 
@@ -8,9 +9,11 @@ final class LutraChatMobileApplication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(brightness: Brightness.dark),
-      home: const SplashScreen(),
+    return TranslationProvider(
+      child: MaterialApp(
+        theme: ThemeData(brightness: Brightness.dark),
+        home: const SplashScreen(),
+      ),
     );
   }
 }

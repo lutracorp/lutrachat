@@ -1,0 +1,8 @@
+---
+base_locale: en-US
+namespaces: true
+output_format: multiple_files
+input_directory: assets/i18n
+output_directory: lib/gen/i18n
+input_file_pattern: .i18n.yaml
+flutter_integration: true

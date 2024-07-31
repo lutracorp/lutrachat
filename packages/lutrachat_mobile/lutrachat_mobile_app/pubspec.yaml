@@ -1,3 +1,4 @@
+---
 name: lutrachat_mobile_app
 version: 1.0.0
 description: LutraChat mobile application.
@@ -11,10 +12,12 @@ environment:
   sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
+  dart_random_choice: ^0.2.0
   flutter:
     sdk: flutter
   get_it: ^7.7.0
   injectable: ^2.4.4
+  lutrachat_mobile_i18n: ^1.0.0
 
 dev_dependencies:
   build_runner: ^2.4.11

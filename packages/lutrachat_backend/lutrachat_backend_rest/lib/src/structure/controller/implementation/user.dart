@@ -24,7 +24,7 @@ final class UserControllerImplementation implements UserController {
   @override
   Future<UserResponse> fetch(Request request, String userId) async {
     final UserTableData? userData =
-        await userAccessor.findByCanonicalId(userId);
+        await userAccessor.findOneByCanonicalId(userId);
 
     if (userData != null) {
       return UserResponse.fromTableData(userData);

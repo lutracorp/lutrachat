@@ -17,13 +17,25 @@ final class ChannelAccessorImplementation
   ChannelAccessorImplementation(super.attachedDatabase);
 
   @override
-  Future<ChannelTableData?> findByCanonicalId(String id) async {
+  Future<ChannelTableData?> findOneByCanonicalId(String id) {
     final query = select(table)
       ..where(
         (entity) => entity.id.equals(id),
       );
 
-    return await query.getSingleOrNull();
+    return query.getSingleOrNull();
+  }
+
+  @override
+  Future<Iterable<ChannelTableData>> findManyByCanonicalIds(
+    Iterable<String> ids,
+  ) {
+    final query = select(table)
+      ..where(
+        (entity) => entity.id.isIn(ids),
+      );
+
+    return query.get();
   }
 
   @override

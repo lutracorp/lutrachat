@@ -16,33 +16,45 @@ final class UserAccessorImplementation extends BaseFOxIDAccessor<UserTableData>
   UserAccessorImplementation(super.attachedDatabase);
 
   @override
-  Future<UserTableData?> findByCanonicalId(String id) async {
+  Future<UserTableData?> findOneByCanonicalId(String id) {
     final query = select(table)
       ..where(
         (entity) => entity.id.equals(id),
       );
 
-    return await query.getSingleOrNull();
+    return query.getSingleOrNull();
   }
 
   @override
-  Future<UserTableData?> findByName(String username) async {
+  Future<Iterable<UserTableData>> findManyByCanonicalIds(
+    Iterable<String> ids,
+  ) {
+    final query = select(table)
+      ..where(
+        (entity) => entity.id.isIn(ids),
+      );
+
+    return query.get();
+  }
+
+  @override
+  Future<UserTableData?> findOneByName(String username) {
     final query = select(table)
       ..where(
         (entity) => entity.name.equals(username),
       );
 
-    return await query.getSingleOrNull();
+    return query.getSingleOrNull();
   }
 
   @override
-  Future<UserTableData?> findByEmail(String email) async {
+  Future<UserTableData?> findOneByEmail(String email) {
     final query = select(table)
       ..where(
         (entity) => entity.email.equals(email),
       );
 
-    return await query.getSingleOrNull();
+    return query.getSingleOrNull();
   }
 
   @override

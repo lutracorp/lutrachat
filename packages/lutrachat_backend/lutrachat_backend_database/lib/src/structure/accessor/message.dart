@@ -9,7 +9,7 @@ abstract interface class MessageAccessor
   MessageAccessor(super.attachedDatabase);
 
   /// Returns an list of messages in the channel.
-  Future<List<MessageTableData>> listByChannelId(
+  Future<List<MessageTableData>> findManyByChannelId(
     FOxID channel, {
     FOxID? before,
     FOxID? after,
@@ -17,7 +17,7 @@ abstract interface class MessageAccessor
   });
 
   /// Returns an list of messages in the channel.
-  Future<List<MessageTableData>> listByCanonicalChannelId(
+  Future<List<MessageTableData>> findManyByCanonicalChannelId(
     String channel, {
     String? before,
     String? after,

@@ -17,7 +17,7 @@ final class ChannelControllerImplementation implements ChannelController {
   @override
   Future<ChannelResponse> fetch(Request request, String channelId) async {
     final ChannelTableData? channelData =
-        await channelAccessor.findByCanonicalId(channelId);
+        await channelAccessor.findOneByCanonicalId(channelId);
 
     if (channelData != null) {
       return ChannelResponse.fromTableData(channelData);

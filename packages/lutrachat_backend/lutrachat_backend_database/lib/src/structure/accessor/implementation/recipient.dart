@@ -18,60 +18,46 @@ final class RecipientAccessorImplementation
   RecipientAccessorImplementation(super.attachedDatabase);
 
   @override
-  Future<RecipientTableData?> findByCanonicalId(String id) async {
+  Future<RecipientTableData?> findOneByCanonicalId(String id) {
     final query = select(table)
       ..where(
         (entity) => entity.id.equals(id),
       );
 
-    return await query.getSingleOrNull();
+    return query.getSingleOrNull();
   }
 
   @override
-  Future<List<RecipientTableData>> listByChannelId(
-    FOxID channel, {
-    FOxID? before,
-    FOxID? after,
-    int? limit,
-  }) async =>
-      await listByCanonicalChannelId(
+  Future<Iterable<RecipientTableData>> findManyByCanonicalIds(
+    Iterable<String> ids,
+  ) {
+    final query = select(table)
+      ..where(
+        (entity) => entity.id.isIn(ids),
+      );
+
+    return query.get();
+  }
+
+  @override
+  Future<List<RecipientTableData>> findManyByChannelId(FOxID channel) =>
+      findManyByCanonicalChannelId(
         channel.toJson(),
-        before: before?.toJson(),
-        after: after?.toJson(),
-        limit: limit,
       );
 
   @override
-  Future<List<RecipientTableData>> listByCanonicalChannelId(
-    String channel, {
-    String? before,
-    String? after,
-    int? limit,
-  }) async {
+  Future<List<RecipientTableData>> findManyByCanonicalChannelId(
+    String channel,
+  ) {
     final query = select(table)
-      ..limit(limit ?? 50)
       ..where(
         (entity) => entity.channel.equals(channel),
-      )
-      ..orderBy([
-        (entity) => OrderingTerm.desc(entity.id),
-      ]);
-
-    if (before != null) {
-      query.where(
-        (entity) => entity.id.isSmallerThanValue(before),
       );
-    }
 
-    if (after != null) {
-      query.where(
-        (entity) => entity.id.isBiggerThanValue(after),
-      );
-    }
-
-    return await query.get();
+    return query.get();
   }
 
   @override
-  TableInfo<$RecipientTableTable, RecipientTableData> get table => recipientTable;
+  TableInfo<$RecipientTableTable, RecipientTableData> get table =>
+      recipientTable;
 }

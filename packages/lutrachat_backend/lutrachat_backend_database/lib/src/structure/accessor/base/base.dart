@@ -8,16 +8,12 @@ abstract class BaseAccessor<DC extends DataClass>
 
   TableInfo<Table, DC> get table;
 
-  Future<DC> insert(
-    UpdateCompanion<DC> companion,
-  ) async {
-    return await into(table).insertReturning(companion);
+  Future<DC> insertOne(UpdateCompanion<DC> companion) {
+    return into(table).insertReturning(companion);
   }
 
-  Future<DC?> insertOrIgnore(
-    UpdateCompanion<DC> companion,
-  ) async {
-    return await into(table).insertReturningOrNull(
+  Future<DC?> insertOneOrIgnore(UpdateCompanion<DC> companion) {
+    return into(table).insertReturningOrNull(
       companion,
       mode: InsertMode.insertOrIgnore,
     );

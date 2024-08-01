@@ -30,7 +30,7 @@ final class AuthorizationMiddleware extends ServerMiddleware {
         if (token != null) {
           final TokenData tokenData = tokenService.decode(token);
           final FOxID userId = FOxID.fromList(tokenData.payload);
-          final UserTableData? user = await userAccessor.findById(userId);
+          final UserTableData? user = await userAccessor.findOneById(userId);
 
           if (user != null) {
             final bool isTokenValid =

@@ -18,23 +18,35 @@ final class MessageAccessorImplementation
   MessageAccessorImplementation(super.attachedDatabase);
 
   @override
-  Future<MessageTableData?> findByCanonicalId(String id) async {
+  Future<MessageTableData?> findOneByCanonicalId(String id) {
     final query = select(table)
       ..where(
         (entity) => entity.id.equals(id),
       );
 
-    return await query.getSingleOrNull();
+    return query.getSingleOrNull();
   }
 
   @override
-  Future<List<MessageTableData>> listByChannelId(
+  Future<Iterable<MessageTableData>> findManyByCanonicalIds(
+    Iterable<String> ids,
+  ) {
+    final query = select(table)
+      ..where(
+        (entity) => entity.id.isIn(ids),
+      );
+
+    return query.get();
+  }
+
+  @override
+  Future<List<MessageTableData>> findManyByChannelId(
     FOxID channel, {
     FOxID? before,
     FOxID? after,
     int? limit,
-  }) async =>
-      await listByCanonicalChannelId(
+  }) =>
+      findManyByCanonicalChannelId(
         channel.toJson(),
         before: before?.toJson(),
         after: after?.toJson(),
@@ -42,12 +54,12 @@ final class MessageAccessorImplementation
       );
 
   @override
-  Future<List<MessageTableData>> listByCanonicalChannelId(
+  Future<List<MessageTableData>> findManyByCanonicalChannelId(
     String channel, {
     String? before,
     String? after,
     int? limit,
-  }) async {
+  }) {
     final query = select(table)
       ..limit(limit ?? 50)
       ..where(
@@ -69,7 +81,7 @@ final class MessageAccessorImplementation
       );
     }
 
-    return await query.get();
+    return query.get();
   }
 
   @override

@@ -36,7 +36,7 @@ final class MessageControllerImplementation implements MessageController {
         await channelAccessor.existsByCanonicalId(channelId);
 
     if (channelExists) {
-      final MessageTableData message = await messageAccessor.insert(
+      final MessageTableData message = await messageAccessor.insertOne(
         MessageTableCompanion.insert(
           channel: FOxID.fromJson(channelId),
           author: userTableData.id,
@@ -61,7 +61,7 @@ final class MessageControllerImplementation implements MessageController {
 
     if (channelExists) {
       final List<MessageTableData> messages =
-          await messageAccessor.listByCanonicalChannelId(channelId,
+          await messageAccessor.findManyByCanonicalChannelId(channelId,
               after: messageListQuery.after,
               before: messageListQuery.before,
               limit: messageListQuery.limit);
@@ -76,7 +76,7 @@ final class MessageControllerImplementation implements MessageController {
   Future<MessageResponse> fetch(
       Request request, String channelId, String messageId) async {
     final MessageTableData? messageData =
-        await messageAccessor.findByCanonicalId(messageId);
+        await messageAccessor.findOneByCanonicalId(messageId);
 
     if (messageData != null &&
         FOxID.fromJson(channelId) == messageData.channel) {

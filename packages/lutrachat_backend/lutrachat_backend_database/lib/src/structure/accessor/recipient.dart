@@ -9,8 +9,8 @@ abstract interface class RecipientAccessor
   RecipientAccessor(super.attachedDatabase);
 
   /// Returns an list of recipients in the channel.
-  Future<List<RecipientTableData>> listByChannelId(FOxID channel);
+  Future<List<RecipientTableData>> findManyByChannelId(FOxID channel);
 
-  /// Returns an list of messages in the channel.
-  Future<List<RecipientTableData>> listByCanonicalChannelId(String channel);
+  /// Returns an list of recipients in the channel.
+  Future<List<RecipientTableData>> findManyByCanonicalChannelId(String channel);
 }

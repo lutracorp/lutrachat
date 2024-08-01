@@ -16,7 +16,7 @@ final class RecipientControllerImplementation implements RecipientController {
   Future<Iterable<RecipientResponse>> list(
       Request request, String channelId) async {
     final List<RecipientTableData> recipient =
-        await recipientAccessor.listByCanonicalChannelId(channelId);
+        await recipientAccessor.findManyByCanonicalChannelId(channelId);
 
     return recipient.map(RecipientResponse.fromTableData);
   }

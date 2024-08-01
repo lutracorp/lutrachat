@@ -46,7 +46,7 @@ final class AuthenticationControllerImplementation
     final Uint8List passwordHash =
         await kdfService.derivePasswordBytes(registerPayload.password);
 
-    final UserTableData? user = await userAccessor.insertOrIgnore(
+    final UserTableData? user = await userAccessor.insertOneOrIgnore(
       UserTableCompanion.insert(
         name: registerPayload.name,
         email: registerPayload.email,
@@ -72,7 +72,7 @@ final class AuthenticationControllerImplementation
         await request.body.as(AuthenticationLoginRequest.fromJson);
 
     final UserTableData? user =
-        await userAccessor.findByEmail(loginPayload.email);
+        await userAccessor.findOneByEmail(loginPayload.email);
 
     if (user != null) {
       final bool isPasswordValid = await kdfService.verifyPasswordBytes(

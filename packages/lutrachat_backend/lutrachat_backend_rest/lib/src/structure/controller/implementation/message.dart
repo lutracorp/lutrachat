@@ -53,8 +53,12 @@ final class MessageControllerImplementation implements MessageController {
   @override
   Future<Iterable<MessageResponse>> list(
       Request request, String channelId) async {
-    final MessageListQuery messageListQuery =
-        MessageListQuery.fromJson(request.requestedUri.queryParameters);
+    final Map<String, String> query = request.requestedUri.queryParameters;
+
+    final MessageListQuery messageListQuery = MessageListQuery.fromJson({
+      ...query,
+      'limit': num.tryParse(query['limit'] ?? ''),
+    });
 
     final bool channelExists =
         await channelAccessor.existsByCanonicalId(channelId);

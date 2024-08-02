@@ -19,10 +19,10 @@ abstract class BaseFOxIDAccessor<DC extends DataClass>
   }
 
   /// Find many [DC] by list of ID's in canonical format.
-  Future<Iterable<DC>> findManyByCanonicalIds(Iterable<String> ids);
+  Future<List<DC>> findManyByCanonicalIds(Iterable<String> ids);
 
   /// Find many [DC] by list of ID's.
-  Future<Iterable<DC>> findManyByIds(Iterable<FOxID> ids) {
+  Future<List<DC>> findManyByIds(Iterable<FOxID> ids) {
     final Iterable<String> canonicalIds =
         ids.map(FOxIDConverter.instance.toSql);
 

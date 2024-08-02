@@ -7,6 +7,11 @@ import 'base/foxid.dart';
 abstract interface class RecipientAccessor
     extends BaseFOxIDAccessor<RecipientTableData> {
   RecipientAccessor(super.attachedDatabase);
+  /// Returns an list of recipients of the user.
+  Future<List<RecipientTableData>> findManyByUserId(FOxID user);
+
+  /// Returns an list of recipients of the user.
+  Future<List<RecipientTableData>> findManyByCanonicalUserId(String user);
 
   /// Returns an list of recipients in the channel.
   Future<List<RecipientTableData>> findManyByChannelId(FOxID channel);

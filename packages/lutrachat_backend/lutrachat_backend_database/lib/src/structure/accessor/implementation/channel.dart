@@ -27,7 +27,7 @@ final class ChannelAccessorImplementation
   }
 
   @override
-  Future<Iterable<ChannelTableData>> findManyByCanonicalIds(
+  Future<List<ChannelTableData>> findManyByCanonicalIds(
     Iterable<String> ids,
   ) {
     final query = select(table)

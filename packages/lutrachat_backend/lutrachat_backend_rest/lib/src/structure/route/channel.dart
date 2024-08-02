@@ -34,6 +34,11 @@ final class ChannelRoute extends ServerRoute {
   @override
   Handler configure() => RouterPlus()
     ..get(
+      '/',
+      channelController.list,
+      use: authorizationMiddleware,
+    )
+    ..get(
       '/<target>',
       channelController.fetch,
       use: authorizationMiddleware,

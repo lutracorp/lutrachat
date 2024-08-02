@@ -26,7 +26,7 @@ final class UserAccessorImplementation extends BaseFOxIDAccessor<UserTableData>
   }
 
   @override
-  Future<Iterable<UserTableData>> findManyByCanonicalIds(
+  Future<List<UserTableData>> findManyByCanonicalIds(
     Iterable<String> ids,
   ) {
     final query = select(table)

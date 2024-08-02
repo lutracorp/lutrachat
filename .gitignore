@@ -34,3 +34,6 @@ local.properties
 *.iml
 .vs/
 .vscode/
+
+# Databases
+*.db

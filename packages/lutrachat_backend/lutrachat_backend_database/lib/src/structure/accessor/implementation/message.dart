@@ -28,7 +28,7 @@ final class MessageAccessorImplementation
   }
 
   @override
-  Future<Iterable<MessageTableData>> findManyByCanonicalIds(
+  Future<List<MessageTableData>> findManyByCanonicalIds(
     Iterable<String> ids,
   ) {
     final query = select(table)

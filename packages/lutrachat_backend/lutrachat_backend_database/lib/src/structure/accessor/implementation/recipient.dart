@@ -28,12 +28,28 @@ final class RecipientAccessorImplementation
   }
 
   @override
-  Future<Iterable<RecipientTableData>> findManyByCanonicalIds(
+  Future<List<RecipientTableData>> findManyByCanonicalIds(
     Iterable<String> ids,
   ) {
     final query = select(table)
       ..where(
         (entity) => entity.id.isIn(ids),
+      );
+
+    return query.get();
+  }
+
+  @override
+  Future<List<RecipientTableData>> findManyByUserId(FOxID user) async =>
+      await findManyByCanonicalUserId(
+        user.toJson(),
+      );
+
+  @override
+  Future<List<RecipientTableData>> findManyByCanonicalUserId(String user) {
+    final query = select(table)
+      ..where(
+        (entity) => entity.user.equals(user),
       );
 
     return query.get();

@@ -18,4 +18,20 @@ abstract class BaseAccessor<DC extends DataClass>
       mode: InsertMode.insertOrIgnore,
     );
   }
+
+  Future<void> insertMany(Iterable<UpdateCompanion<DC>> companions) {
+    return batch(
+      (Batch context) => context.insertAll(table, companions),
+    );
+  }
+
+  Future<void> insertManyOrIgnore(Iterable<UpdateCompanion<DC>> companions) {
+    return batch(
+      (Batch context) => context.insertAll(
+        table,
+        companions,
+        mode: InsertMode.insertOrIgnore,
+      ),
+    );
+  }
 }

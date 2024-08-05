@@ -11,8 +11,13 @@ final class LutraChatMobileApplication extends StatelessWidget {
   Widget build(BuildContext context) {
     return TranslationProvider(
       child: MaterialApp(
+        title: 'LutraChat',
         theme: ThemeData(brightness: Brightness.dark),
-        home: const SplashScreen(),
+        routes: {
+          '/': (_) => const SplashScreen(),
+        },
+        initialRoute: '/',
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

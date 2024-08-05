@@ -9,4 +9,7 @@ abstract interface class ChannelController {
 
   /// Returns a list of channel objects.
   Future<Iterable<ChannelResponse>> list(Request request);
+
+  /// Creates channel and returns it.
+  Future<ChannelResponse> create(Request request);
 }

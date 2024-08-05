@@ -38,6 +38,11 @@ final class ChannelRoute extends ServerRoute {
       channelController.list,
       use: authorizationMiddleware,
     )
+    ..post(
+      '/',
+      channelController.create,
+      use: authorizationMiddleware,
+    )
     ..get(
       '/<target>',
       channelController.fetch,

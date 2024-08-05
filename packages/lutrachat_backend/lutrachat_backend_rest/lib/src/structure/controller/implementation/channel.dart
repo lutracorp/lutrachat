@@ -5,6 +5,7 @@ import 'package:lutrachat_backend_server/lutrachat_backend_server.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../../../enumerable/error/channel.dart';
+import '../../../model/http/channel/create/request.dart';
 import '../../../model/http/common/channel/response.dart';
 import '../channel.dart';
 
@@ -48,5 +49,64 @@ final class ChannelControllerImplementation implements ChannelController {
         await channelAccessor.findManyByIds(channelIds);
 
     return channels.map(ChannelResponse.fromTableData);
+  }
+
+  @override
+  Future<ChannelResponse> create(Request request) async {
+    final UserTableData user =
+        request.context['lutrachat/user'] as UserTableData;
+
+    final ChannelCreateRequest payload =
+        await request.body.as(ChannelCreateRequest.fromJson);
+
+    late final ChannelTableData channel;
+
+    switch (payload) {
+      case NotesChannelCreateRequest():
+        channel = await channelAccessor.insertOne(
+          ChannelTableCompanion.insert(
+            type: ChannelType.notes,
+          ),
+        );
+
+        await recipientAccessor.insertOne(
+          RecipientTableCompanion.insert(channel: channel.id, user: user.id),
+        );
+
+      case DirectChannelCreateRequest(:final FOxID recipient):
+        channel = await channelAccessor.insertOne(
+          ChannelTableCompanion.insert(
+            type: ChannelType.direct,
+          ),
+        );
+
+        await recipientAccessor.insertMany([
+          RecipientTableCompanion.insert(channel: channel.id, user: user.id),
+          RecipientTableCompanion.insert(channel: channel.id, user: recipient),
+        ]);
+
+      case GroupChannelCreateRequest(
+          :final String? name,
+          :final Set<FOxID>? recipients,
+        ):
+        channel = await channelAccessor.insertOne(
+          ChannelTableCompanion.insert(
+            type: ChannelType.group,
+            name: Value.absentIfNull(name),
+          ),
+        );
+
+        await recipientAccessor.insertManyOrIgnore([
+          RecipientTableCompanion.insert(channel: channel.id, user: user.id),
+          ...?recipients?.map(
+            (recipient) => RecipientTableCompanion.insert(
+              channel: channel.id,
+              user: recipient,
+            ),
+          )
+        ]);
+    }
+
+    return ChannelResponse.fromTableData(channel);
   }
 }

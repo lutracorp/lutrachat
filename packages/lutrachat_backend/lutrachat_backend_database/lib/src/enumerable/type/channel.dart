@@ -10,5 +10,8 @@ enum ChannelType {
   direct,
 
   /// A private channel between multiple users.
-  group,
+  group;
+
+  /// Returns channel type from its index.
+  factory ChannelType.fromIndex(int index) => values[index];
 }

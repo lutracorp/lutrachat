@@ -15,6 +15,9 @@ final class ChannelRoute extends ServerRoute {
   /// Middleware to verify authorization token.
   final AuthorizationMiddleware authorizationMiddleware;
 
+  /// Middleware checking for channel existence.
+  final ChannelMiddleware channelMiddleware;
+
   /// A controller that performs channel actions.
   final ChannelController channelController;
 
@@ -26,6 +29,7 @@ final class ChannelRoute extends ServerRoute {
 
   ChannelRoute(
     this.authorizationMiddleware,
+    this.channelMiddleware,
     this.channelController,
     this.messageController,
     this.recipientController,
@@ -44,28 +48,28 @@ final class ChannelRoute extends ServerRoute {
       use: authorizationMiddleware,
     )
     ..get(
-      '/<target>',
+      '/<channel>',
       channelController.fetch,
-      use: authorizationMiddleware,
+      use: authorizationMiddleware.call + channelMiddleware.call,
     )
     ..get(
       '/<channel>/messages',
       messageController.list,
-      use: authorizationMiddleware,
+      use: authorizationMiddleware.call + channelMiddleware.call,
     )
     ..post(
       '/<channel>/messages',
       messageController.create,
-      use: authorizationMiddleware,
+      use: authorizationMiddleware.call + channelMiddleware.call,
     )
     ..get(
       '/<channel>/messages/<message>',
       messageController.fetch,
-      use: authorizationMiddleware,
+      use: authorizationMiddleware.call + channelMiddleware.call,
     )
     ..get(
       '/<channel>/recipients',
       recipientController.list,
-      use: authorizationMiddleware,
+      use: authorizationMiddleware.call + channelMiddleware.call,
     );
 }

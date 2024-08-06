@@ -3,7 +3,6 @@ import 'package:lutrachat_backend_database/lutrachat_backend_database.dart';
 import 'package:lutrachat_backend_server/lutrachat_backend_server.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '../../../enumerable/error/user.dart';
 import '../../../model/http/common/user/response.dart';
 import '../user.dart';
 

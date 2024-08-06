@@ -1,4 +1,9 @@
 export 'src/configuration/server.dart';
+export 'src/enumerable/error/authentication.dart';
+export 'src/enumerable/error/authorization.dart';
+export 'src/enumerable/error/channel.dart';
+export 'src/enumerable/error/message.dart';
+export 'src/enumerable/error/user.dart';
 export 'src/extension/request/context.dart';
 export 'src/injectable.dart';
 export 'src/service/server.dart';
@@ -6,3 +11,4 @@ export 'src/structure/base/error.dart';
 export 'src/structure/base/middleware.dart';
 export 'src/structure/base/route.dart';
 export 'src/structure/middleware/authorization.dart';
+export 'src/structure/middleware/channel.dart';

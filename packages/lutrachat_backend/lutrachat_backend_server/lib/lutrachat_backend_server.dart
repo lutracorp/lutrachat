@@ -1,4 +1,5 @@
 export 'src/configuration/server.dart';
+export 'src/extension/request/context.dart';
 export 'src/injectable.dart';
 export 'src/service/server.dart';
 export 'src/structure/base/error.dart';

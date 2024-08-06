@@ -15,10 +15,7 @@ final class UserControllerImplementation implements UserController {
 
   @override
   Future<UserResponse> self(Request request) async {
-    final UserTableData user =
-        request.context['lutrachat/user'] as UserTableData;
-
-    return UserResponse.fromTableData(user);
+    return UserResponse.fromTableData(request.user);
   }
 
   @override

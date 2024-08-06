@@ -44,7 +44,6 @@ interface class NotesChannelCreateRequest extends ChannelCreateRequest
   @Implements<ChannelCreateRequest>()
   const factory NotesChannelCreateRequest() = _NotesChannelCreateRequest;
 
-
   factory NotesChannelCreateRequest.fromJson(Map<String, Object?> json) =>
       _$NotesChannelCreateRequestFromJson(json);
 }

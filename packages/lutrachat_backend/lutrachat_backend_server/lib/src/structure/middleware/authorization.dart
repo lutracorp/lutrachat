@@ -7,6 +7,7 @@ import 'package:lutrachat_backend_database/lutrachat_backend_database.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../../enumerable/error/authorization.dart';
+import '../../extension/request/context.dart';
 import '../base/error.dart';
 import '../base/middleware.dart';
 
@@ -33,14 +34,16 @@ final class AuthorizationMiddleware extends ServerMiddleware {
           final UserTableData? user = await userAccessor.findOneById(userId);
 
           if (user != null) {
-            final bool isTokenValid =
-                await tokenService.verify(token, user.passwordHash);
+            final bool isTokenValid = await tokenService.verify(
+              token,
+              user.passwordHash,
+            );
 
             if (isTokenValid) {
               return innerHandler(
                 request.change(context: {
-                  'lutrachat/user': user,
                   ...request.context,
+                  RequestContext.userKey: user,
                 }),
               );
             }

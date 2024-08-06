@@ -2,15 +2,16 @@ import 'package:dartfield/dartfield.dart';
 import 'package:drift/drift.dart';
 
 /// Converts the BitField BigInto a format that the database can understand.
-final class BitFieldConverter extends TypeConverter<BitField, BigInt> {
+final class BitFieldConverter<BitType extends Enum>
+    extends TypeConverter<BitField<BitType>, BigInt> {
   const BitFieldConverter();
 
   /// Ready to go instance of this converter.
   static const BitFieldConverter instance = BitFieldConverter();
 
   @override
-  BitField fromSql(BigInt fromDb) => BitField(fromDb);
+  BitField<BitType> fromSql(BigInt fromDb) => BitField(fromDb);
 
   @override
-  BigInt toSql(BitField value) => value.value;
+  BigInt toSql(BitField<BitType> value) => value.value;
 }

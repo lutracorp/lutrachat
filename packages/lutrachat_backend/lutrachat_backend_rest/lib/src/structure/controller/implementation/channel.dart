@@ -36,11 +36,8 @@ final class ChannelControllerImplementation implements ChannelController {
 
   @override
   Future<Iterable<ChannelResponse>> list(Request request) async {
-    final UserTableData user =
-        request.context['lutrachat/user'] as UserTableData;
-
     final List<RecipientTableData> recipients =
-        await recipientAccessor.findManyByUserId(user.id);
+        await recipientAccessor.findManyByUserId(request.user.id);
 
     final Iterable<FOxID> channelIds =
         recipients.map((recipient) => recipient.channel);
@@ -53,9 +50,6 @@ final class ChannelControllerImplementation implements ChannelController {
 
   @override
   Future<ChannelResponse> create(Request request) async {
-    final UserTableData user =
-        request.context['lutrachat/user'] as UserTableData;
-
     final ChannelCreateRequest payload =
         await request.body.as(ChannelCreateRequest.fromJson);
 
@@ -70,7 +64,10 @@ final class ChannelControllerImplementation implements ChannelController {
         );
 
         await recipientAccessor.insertOne(
-          RecipientTableCompanion.insert(channel: channel.id, user: user.id),
+          RecipientTableCompanion.insert(
+            channel: channel.id,
+            user: request.user.id,
+          ),
         );
 
       case DirectChannelCreateRequest(:final FOxID recipient):
@@ -81,8 +78,14 @@ final class ChannelControllerImplementation implements ChannelController {
         );
 
         await recipientAccessor.insertMany([
-          RecipientTableCompanion.insert(channel: channel.id, user: user.id),
-          RecipientTableCompanion.insert(channel: channel.id, user: recipient),
+          RecipientTableCompanion.insert(
+            channel: channel.id,
+            user: request.user.id,
+          ),
+          RecipientTableCompanion.insert(
+            channel: channel.id,
+            user: recipient,
+          ),
         ]);
 
       case GroupChannelCreateRequest(
@@ -97,7 +100,10 @@ final class ChannelControllerImplementation implements ChannelController {
         );
 
         await recipientAccessor.insertManyOrIgnore([
-          RecipientTableCompanion.insert(channel: channel.id, user: user.id),
+          RecipientTableCompanion.insert(
+            channel: channel.id,
+            user: request.user.id,
+          ),
           ...?recipients?.map(
             (recipient) => RecipientTableCompanion.insert(
               channel: channel.id,

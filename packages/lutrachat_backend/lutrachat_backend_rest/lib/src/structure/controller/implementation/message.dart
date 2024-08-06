@@ -29,9 +29,6 @@ final class MessageControllerImplementation implements MessageController {
     final MessageCreateRequest messageCreatePayload =
         await request.body.as(MessageCreateRequest.fromJson);
 
-    final UserTableData userTableData =
-        request.context['lutrachat/user'] as UserTableData;
-
     final bool channelExists =
         await channelAccessor.existsByCanonicalId(channelId);
 
@@ -39,7 +36,7 @@ final class MessageControllerImplementation implements MessageController {
       final MessageTableData message = await messageAccessor.insertOne(
         MessageTableCompanion.insert(
           channel: FOxID.fromJson(channelId),
-          author: userTableData.id,
+          author: request.user.id,
           content: messageCreatePayload.content,
         ),
       );

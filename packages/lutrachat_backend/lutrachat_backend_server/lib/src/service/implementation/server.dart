@@ -7,6 +7,7 @@ import '../../configuration/server.dart';
 import '../../structure/base/route.dart';
 import '../../structure/middleware/cors.dart';
 import '../../structure/middleware/error.dart';
+import '../../structure/middleware/metrics.dart';
 import '../server.dart';
 
 @LazySingleton(as: ServerService)
@@ -26,11 +27,15 @@ final class ServerServiceImplementation implements ServerService {
   /// Middleware for handling errors.
   final ErrorMiddleware errorMiddleware;
 
+  /// Middleware for collecting metrics.
+  final MetricsMiddleware metricsMiddleware;
+
   ServerServiceImplementation(
     this.configuration,
     this.loggerService,
     this.corsMiddleware,
     this.errorMiddleware,
+    this.metricsMiddleware,
   );
 
   @override
@@ -48,6 +53,7 @@ final class ServerServiceImplementation implements ServerService {
     final Handler handler = Pipeline()
         .addMiddleware(corsMiddleware)
         .addMiddleware(errorMiddleware)
+        .addMiddleware(metricsMiddleware)
         .addHandler(router);
 
     await serve(

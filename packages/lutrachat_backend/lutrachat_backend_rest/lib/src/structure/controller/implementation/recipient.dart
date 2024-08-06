@@ -14,10 +14,7 @@ final class RecipientControllerImplementation implements RecipientController {
   RecipientControllerImplementation(this.recipientAccessor);
 
   @override
-  Future<Iterable<RecipientResponse>> list(
-    Request request,
-    String _,
-  ) async {
+  Future<Iterable<RecipientResponse>> list(Request request, String _) async {
     final List<RecipientTableData> recipient =
         await recipientAccessor.findManyByChannelId(request.channel.id);
 

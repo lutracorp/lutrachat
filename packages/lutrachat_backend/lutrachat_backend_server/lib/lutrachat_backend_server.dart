@@ -12,3 +12,4 @@ export 'src/structure/base/middleware.dart';
 export 'src/structure/base/route.dart';
 export 'src/structure/middleware/authorization.dart';
 export 'src/structure/middleware/channel.dart';
+export 'src/structure/middleware/recipient.dart';

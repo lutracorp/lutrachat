@@ -18,6 +18,9 @@ final class ChannelRoute extends ServerRoute {
   /// Middleware checking for channel existence.
   final ChannelMiddleware channelMiddleware;
 
+  /// Middleware for checking access to private channels.
+  final RecipientMiddleware recipientMiddleware;
+
   /// A controller that performs channel actions.
   final ChannelController channelController;
 
@@ -31,6 +34,7 @@ final class ChannelRoute extends ServerRoute {
     this.authorizationMiddleware,
     this.channelMiddleware,
     this.channelController,
+    this.recipientMiddleware,
     this.messageController,
     this.recipientController,
   );
@@ -50,26 +54,36 @@ final class ChannelRoute extends ServerRoute {
     ..get(
       '/<channel>',
       channelController.fetch,
-      use: authorizationMiddleware.call + channelMiddleware.call,
+      use: authorizationMiddleware.call +
+          channelMiddleware.call +
+          recipientMiddleware.call,
     )
     ..get(
       '/<channel>/messages',
       messageController.list,
-      use: authorizationMiddleware.call + channelMiddleware.call,
+      use: authorizationMiddleware.call +
+          channelMiddleware.call +
+          recipientMiddleware.call,
     )
     ..post(
       '/<channel>/messages',
       messageController.create,
-      use: authorizationMiddleware.call + channelMiddleware.call,
+      use: authorizationMiddleware.call +
+          channelMiddleware.call +
+          recipientMiddleware.call,
     )
     ..get(
       '/<channel>/messages/<message>',
       messageController.fetch,
-      use: authorizationMiddleware.call + channelMiddleware.call,
+      use: authorizationMiddleware.call +
+          channelMiddleware.call +
+          recipientMiddleware.call,
     )
     ..get(
       '/<channel>/recipients',
       recipientController.list,
-      use: authorizationMiddleware.call + channelMiddleware.call,
+      use: authorizationMiddleware.call +
+          channelMiddleware.call +
+          recipientMiddleware.call,
     );
 }

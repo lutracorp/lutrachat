@@ -12,9 +12,16 @@ extension RequestContext on Request {
   /// Context key for requested channel.
   static const channelKey = '$keyPrefix/channel';
 
+  /// Context key for recipient of the requested channel.
+  static const recipientKey = '$keyPrefix/recipient';
+
   /// Authorized user data.
   UserTableData get user => context[userKey] as UserTableData;
 
   /// Requested channel.
   ChannelTableData get channel => context[channelKey] as ChannelTableData;
+
+  /// Authorized user recipient of requested channel.
+  RecipientTableData get recipient =>
+      context[recipientKey] as RecipientTableData;
 }

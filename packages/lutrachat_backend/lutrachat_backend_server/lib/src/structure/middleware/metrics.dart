@@ -39,7 +39,7 @@ final class MetricsMiddleware extends ServerMiddleware {
   /// Removes sensitive information from [Uri]
   static Uri escapeUri(Uri uri) {
     uriEscapeRules.forEach(
-      (RegExp rule, String replacer) => uri.replace(
+      (RegExp rule, String replacer) => uri = uri.replace(
         path: uri.path.replaceAll(rule, replacer),
       ),
     );

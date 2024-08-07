@@ -4,21 +4,26 @@ import 'package:luthor/luthor.dart';
 part 'request.freezed.dart';
 part 'request.g.dart';
 
-@luthor
 @freezed
 interface class AuthenticationLoginRequest with _$AuthenticationLoginRequest {
+  static final Validator schema = l.schema({
+    'email': l.string().min(4).max(256).email().required(),
+    'password': l.string().min(8).max(72).required(),
+  });
+
   const factory AuthenticationLoginRequest({
     /// The user's email address.
-    @HasMin(4) @HasMax(256) required String email,
+    required String email,
 
     /// The user's password.
-    @HasMin(8) @HasMax(72) required String password,
+    required String password,
   }) = _AuthenticationLoginRequest;
 
-  static SchemaValidationResult<AuthenticationLoginRequest> validate(
-    Map<String, dynamic> json,
-  ) =>
-      $AuthenticationLoginRequestValidate(json);
+  static SchemaValidationResult validate(Map<String, Object?> json) =>
+      schema.validateSchema(
+        json,
+        fromJson: AuthenticationLoginRequest.fromJson,
+      );
 
   factory AuthenticationLoginRequest.fromJson(Map<String, Object?> json) =>
       _$AuthenticationLoginRequestFromJson(json);

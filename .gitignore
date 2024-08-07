@@ -18,6 +18,7 @@ flutter_*.png
 *.module.dart
 *.config.dart
 *.pb*.dart
+*.dill
 
 # ---> Java / Kotlin
 # Gradle

@@ -444,18 +444,10 @@ packages:
     dependency: "direct main"
     description:
       name: luthor
-      sha256: "434da0652eebf64ab7ecc9d6a7da458bac7cd4a4b357e0741f6d9a3a7ade72cc"
+      sha256: "78b7b8758b95d49628adc928411f37dee0e0c9781c1fb4ab11b05373f6f38d0e"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.2+1"
-  luthor_generator:
-    dependency: "direct dev"
-    description:
-      name: luthor_generator
-      sha256: deb2bf93b5ac92ca761f92eff4168d74e2328ea36de72d5741023f07e16eb342
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.5"
+    version: "0.4.2+2"
   lutrachat_backend_common:
     dependency: "direct main"
     description:

@@ -1,3 +1,4 @@
+import 'package:luthor/luthor.dart';
 import 'package:lutrachat_backend_database/lutrachat_backend_database.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
@@ -15,6 +16,9 @@ extension RequestContext on Request {
   /// Context key for recipient of the requested channel.
   static const recipientKey = '$keyPrefix/recipient';
 
+  /// Context key of validated schema result.
+  static const validationResultKey = '$keyPrefix/validationResult';
+
   /// Authorized user data.
   UserTableData get user => context[userKey] as UserTableData;
 
@@ -24,4 +28,8 @@ extension RequestContext on Request {
   /// Authorized user recipient of requested channel.
   RecipientTableData get recipient =>
       context[recipientKey] as RecipientTableData;
+
+  /// Validated schema result.
+  SchemaValidationSuccess get validationResult =>
+      context[validationResultKey] as SchemaValidationSuccess;
 }

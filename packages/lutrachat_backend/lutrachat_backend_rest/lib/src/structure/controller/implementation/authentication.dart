@@ -40,7 +40,7 @@ final class AuthenticationControllerImplementation
   @override
   Future<AuthenticationTokenResponse> register(Request request) async {
     final AuthenticationRegisterRequest registerPayload =
-        await request.body.as(AuthenticationRegisterRequest.fromJson);
+        request.validationResult.data;
 
     final Uint8List passwordHash =
         await kdfService.derivePasswordBytes(registerPayload.password);
@@ -68,7 +68,7 @@ final class AuthenticationControllerImplementation
   @override
   Future<AuthenticationTokenResponse> login(Request request) async {
     final AuthenticationLoginRequest loginPayload =
-        await request.body.as(AuthenticationLoginRequest.fromJson);
+        request.validationResult.data;
 
     final UserTableData? user =
         await userAccessor.findOneByEmail(loginPayload.email);

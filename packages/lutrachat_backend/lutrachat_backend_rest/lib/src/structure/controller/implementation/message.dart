@@ -25,7 +25,7 @@ final class MessageControllerImplementation implements MessageController {
   @override
   Future<MessageResponse> create(Request request, String _) async {
     final MessageCreateRequest messageCreatePayload =
-        await request.body.as(MessageCreateRequest.fromJson);
+        request.validationResult.data;
 
     final MessageTableData message = await messageAccessor.insertOne(
       MessageTableCompanion.insert(

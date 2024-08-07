@@ -42,8 +42,7 @@ final class ChannelControllerImplementation implements ChannelController {
 
   @override
   Future<ChannelResponse> create(Request request) async {
-    final ChannelCreateRequest payload =
-        await request.body.as(ChannelCreateRequest.fromJson);
+    final ChannelCreateRequest payload = request.validationResult.data;
 
     late final ChannelTableData channel;
 

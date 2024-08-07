@@ -19,7 +19,7 @@ dependencies:
   get_it: ^7.7.0
   injectable: ^2.4.4
   json_annotation: ^4.9.0
-  luthor: ^0.4.2+1
+  luthor: ^0.4.2+2
   lutrachat_backend_common: ^1.0.0
   lutrachat_backend_database: ^1.0.0
   lutrachat_backend_protocol: ^1.0.0
@@ -35,7 +35,6 @@ dev_dependencies:
   injectable_generator: ^2.6.2
   json_serializable: ^6.8.0
   lints: ^4.0.0
-  luthor_generator: ^0.4.5
   test: ^1.25.8
 
 dependency_overrides:

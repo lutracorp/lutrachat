@@ -440,6 +440,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  luthor:
+    dependency: "direct main"
+    description:
+      name: luthor
+      sha256: "78b7b8758b95d49628adc928411f37dee0e0c9781c1fb4ab11b05373f6f38d0e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.2+2"
   lutrachat_backend_common:
     dependency: "direct main"
     description:

@@ -2,6 +2,8 @@ import 'package:injectable/injectable.dart';
 import 'package:lutrachat_backend_server/lutrachat_backend_server.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
+import '../../model/http/channel/create/request.dart';
+import '../../model/http/message/create/request.dart';
 import '../controller/channel.dart';
 import '../controller/message.dart';
 import '../controller/recipient.dart';
@@ -14,6 +16,8 @@ final class ChannelRoute extends ServerRoute {
 
   /// Middleware to verify authorization token.
   final AuthorizationMiddleware authorizationMiddleware;
+
+  final ValidatorMiddleware validatorMiddleware;
 
   /// Middleware checking for channel existence.
   final ChannelMiddleware channelMiddleware;
@@ -33,6 +37,7 @@ final class ChannelRoute extends ServerRoute {
   ChannelRoute(
     this.authorizationMiddleware,
     this.channelMiddleware,
+    this.validatorMiddleware,
     this.channelController,
     this.recipientMiddleware,
     this.messageController,
@@ -44,12 +49,13 @@ final class ChannelRoute extends ServerRoute {
     ..get(
       '/',
       channelController.list,
-      use: authorizationMiddleware,
+      use: authorizationMiddleware.call,
     )
     ..post(
       '/',
       channelController.create,
-      use: authorizationMiddleware,
+      use: validatorMiddleware.body(ChannelCreateRequest.validate) +
+          authorizationMiddleware.call,
     )
     ..get(
       '/<channel>',
@@ -68,7 +74,8 @@ final class ChannelRoute extends ServerRoute {
     ..post(
       '/<channel>/messages',
       messageController.create,
-      use: authorizationMiddleware.call +
+      use: validatorMiddleware.body(MessageCreateRequest.validate) +
+          authorizationMiddleware.call +
           channelMiddleware.call +
           recipientMiddleware.call,
     )

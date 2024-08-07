@@ -1,0 +1,15 @@
+# Unused packages
+packages/lutrachat_mobile
+
+# Tools
+**/.dart_tool/
+
+# Generated
+**/*.g.dart
+**/*.freezed.dart
+**/*.schema.dart
+**/*.mapper.dart
+**/*.module.dart
+**/*.config.dart
+**/*.pb*.dart
+**/*.dill

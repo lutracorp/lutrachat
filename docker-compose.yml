@@ -1,0 +1,8 @@
+services:
+  lutrachat:
+    image: codeberg.org/lutracorp/lutrachat:latest
+    container_name: lutrachat
+    build: .
+    network_mode: host
+    volumes:
+      - ./config.yaml:/config.yaml

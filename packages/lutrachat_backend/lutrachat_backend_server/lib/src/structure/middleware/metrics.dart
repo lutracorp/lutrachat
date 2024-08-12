@@ -60,7 +60,7 @@ final class MetricsMiddleware extends ServerMiddleware {
       } finally {
         watch.stop();
 
-        if (response != null) {
+        if (response != null && response.statusCode == 200) {
           final List<String> labels = [
             request.method,
             escapeUri(request.requestedUri).path,
@@ -69,8 +69,7 @@ final class MetricsMiddleware extends ServerMiddleware {
 
           requestCount.labels(labels).inc();
           requestDuration.labels(labels).observe(
-                watch.elapsedMicroseconds / Duration.microsecondsPerSecond,
-              );
+              watch.elapsedMicroseconds / Duration.microsecondsPerSecond);
         }
       }
     };

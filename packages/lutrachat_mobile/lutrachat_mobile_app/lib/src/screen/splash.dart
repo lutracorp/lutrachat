@@ -1,6 +1,6 @@
 import 'package:dart_random_choice/dart_random_choice.dart';
 import 'package:flutter/material.dart';
-import 'package:lutrachat_mobile_i18n/gen/i18n/strings.g.dart';
+import 'package:lutrachat_mobile_i18n/lutrachat_mobile_i18n.dart';
 
 /// Screen showing loading animation.
 final class SplashScreen extends StatelessWidget {

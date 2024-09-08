@@ -1,9 +1,12 @@
 package config
 
-import "github.com/lutracorp/lutrachat/internal/pkg/database"
+import (
+	"github.com/lutracorp/lutrachat/internal/pkg/database"
+	"github.com/lutracorp/lutrachat/internal/pkg/server"
+)
 
 // Config represents API configuration.
 type Config struct {
-	// Database connection configuration.
-	Database database.Config `hcl:"database,block"`
+	Server   server.Config   `hcl:"server,block"`   // Server listener configuration.
+	Database database.Config `hcl:"database,block"` // Database connection configuration.
 }

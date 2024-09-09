@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package struct.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/lutracorp/lutrachat/api/protocol/struct/v1";
+
+// The data contained in the token.
+message TokenData {
+  bytes payload = 1; // The payload contained in the token.
+  bytes signature = 2; // Signature of the rest of the data in the token.
+  google.protobuf.Timestamp timestamp = 3; // The time when the token was generated.
+}

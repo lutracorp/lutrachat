@@ -1,0 +1,7 @@
+---
+version: v2
+
+plugins:
+  - out: api/protocol
+    opt: paths=source_relative
+    local: protoc-gen-go

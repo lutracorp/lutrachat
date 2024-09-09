@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package struct.v1;
+
+import "google/protobuf/any.proto";
+
+option go_package = "github.com/lutracorp/lutrachat/api/protocol/struct/v1";
+
+// Represents all the data required to check the input data for validity.
+message KdfResult {
+  bytes key = 1; // The key resulted by applying KDF to the input data.
+  bytes nonce = 2; // The nonce used when applying KDF.
+  google.protobuf.Any configuration = 3; // Configuration of the KDF instance used while applying KDF to input data.
+}

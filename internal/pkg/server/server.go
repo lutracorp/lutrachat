@@ -18,7 +18,6 @@ var srv = fiber.New(
 		JSONDecoder:  json.Unmarshal,
 		ServerHeader: appName,
 		ErrorHandler: nil,
-		Prefork:      true,
 	},
 )
 

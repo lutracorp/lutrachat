@@ -6,6 +6,7 @@ require (
 	github.com/goccy/go-json v0.10.3
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/hashicorp/hcl/v2 v2.22.0
+	github.com/lutracorp/foxid-go v1.3.0
 	golang.org/x/crypto v0.26.0
 	google.golang.org/protobuf v1.34.2
 	gorm.io/driver/mysql v1.5.7

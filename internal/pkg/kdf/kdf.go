@@ -25,7 +25,7 @@ func Derive(input []byte) (*v1.KdfResult, error) {
 		return nil, err
 	}
 
-	key := argon2.Key(input, nonce, 3, 32*1024, 4, 32)
+	key := argon2.Key(input, nonce, 2, 19*1024, 1, 32)
 
 	return &v1.KdfResult{
 		Key:   key,
@@ -35,7 +35,7 @@ func Derive(input []byte) (*v1.KdfResult, error) {
 
 // Verify checks whether the input data matches the expected output.
 func Verify(input []byte, expected *v1.KdfResult) bool {
-	key := argon2.Key(input, expected.Nonce, 3, 32*1024, 4, 32)
+	key := argon2.Key(input, expected.Nonce, 2, 19*1024, 1, 32)
 
 	return bytes.Equal(key, expected.Key)
 }

@@ -1,14 +1,14 @@
 package model
 
-// RegisterPayload represents body of authentication register request.
-type RegisterPayload struct {
+// RegisterSchema represents body of authentication register request.
+type RegisterSchema struct {
 	Name     string `json:"name"`     // The user's name.
 	Email    string `json:"email"`    // The user's email address.
 	Password string `json:"password"` // The user's password.
 }
 
-// LoginPayload represents body of authentication login request.
-type LoginPayload struct {
+// LoginSchema represents body of authentication login request.
+type LoginSchema struct {
 	Email    string `json:"email"`    // The user's email address.
 	Password string `json:"password"` // The user's password.
 }

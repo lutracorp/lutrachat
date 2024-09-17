@@ -8,7 +8,7 @@ type (
 		Name     string `json:"name" gorm:"uniqueIndex"`  // The user's name.
 		Email    string `json:"email" gorm:"uniqueIndex"` // The user's email address.
 		Flags    uint32 `json:"flags"`                    // The flags of the user.
-		Password []byte `json:"password"`                 // A result of kdf on the user's password.
+		Password []byte `json:"-"`                        // A result of kdf on the user's password.
 	}
 
 	// Channel is a model representing the channel in the database.

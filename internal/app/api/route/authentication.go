@@ -7,10 +7,10 @@ import (
 
 // AuthenticationRoute binds authentication related routes to server.
 func AuthenticationRoute(srv *fiber.App) error {
-	group := srv.Group("/authentication")
+	rg := srv.Group("/authentication")
 
-	group.Post("/login", controller.AuthenticationLogin)
-	group.Post("/register", controller.AuthenticationRegister)
+	rg.Post("/login", controller.AuthenticationLogin)
+	rg.Post("/register", controller.AuthenticationRegister)
 
 	return nil
 }

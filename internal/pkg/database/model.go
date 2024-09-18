@@ -3,12 +3,12 @@ package database
 type (
 	// User is a model representing the user in the database.
 	User struct {
-		ID       string `json:"id" gorm:"primaryKey"`     // Identifier of the User in the database.
-		Type     uint8  `json:"type"`                     // The type of the user.
-		Name     string `json:"name" gorm:"uniqueIndex"`  // The user's name.
-		Email    string `json:"email" gorm:"uniqueIndex"` // The user's email address.
-		Flags    uint32 `json:"flags"`                    // The flags of the user.
-		Password []byte `json:"-"`                        // A result of kdf on the user's password.
+		ID       string `json:"id" gorm:"primaryKey"`               // Identifier of the User in the database.
+		Type     uint8  `json:"type"`                               // The type of the user.
+		Name     string `json:"name" gorm:"uniqueIndex"`            // The user's name.
+		Email    string `json:"email,omitempty" gorm:"uniqueIndex"` // The user's email address.
+		Flags    uint32 `json:"flags"`                              // The flags of the user.
+		Password []byte `json:"password,omitempty"`                 // A result of kdf on the user's password.
 	}
 
 	// Channel is a model representing the channel in the database.
@@ -42,3 +42,24 @@ type (
 		Channel Channel `json:"-" gorm:"foreignKey:ChannelID;references:ID"` // Channel in which message was sent.
 	}
 )
+
+// AsPublicUser returns public projection of user.
+func (u *User) AsPublicUser() User {
+	return User{
+		ID:    u.ID,
+		Type:  u.Type,
+		Name:  u.Name,
+		Flags: u.Flags,
+	}
+}
+
+// AsPrivateUser returns private projection of user.
+func (u *User) AsPrivateUser() User {
+	return User{
+		ID:    u.ID,
+		Type:  u.Type,
+		Name:  u.Name,
+		Flags: u.Flags,
+		Email: u.Email,
+	}
+}

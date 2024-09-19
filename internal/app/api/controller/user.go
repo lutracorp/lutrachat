@@ -18,7 +18,7 @@ func UserGetCurrent(ctx *fiber.Ctx) error {
 func UserGet(ctx *fiber.Ctx) error {
 	uid := ctx.Params("user")
 
-	u, err := database.GetOne(ctx.Context(), &database.User{ID: uid})
+	u, err := database.GetOne[database.User](ctx.Context(), "id = ?", uid)
 	if err != nil {
 		return ctx.Status(fiber.StatusNotFound).JSON(fiber.Map{})
 	}

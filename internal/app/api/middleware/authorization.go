@@ -25,9 +25,7 @@ func Authorization(ctx *fiber.Ctx) error {
 	}
 
 	id := foxid.FOxID(tn.Payload)
-	ids := id.String()
-
-	user, err := database.GetOne(ctx.Context(), &database.User{ID: ids})
+	user, err := database.GetOne[database.User](ctx.Context(), "id = ?", id.String())
 	if err != nil {
 		return ctx.Status(fiber.StatusUnauthorized).JSON(fiber.Map{})
 	}

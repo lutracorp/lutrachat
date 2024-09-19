@@ -18,7 +18,7 @@ func AuthenticationLogin(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{})
 	}
 
-	user, err := database.GetOne(ctx.Context(), &database.User{Email: body.Email})
+	user, err := database.GetOne[database.User](ctx.Context(), "email = ?", body.Email)
 	if err != nil {
 		return ctx.Status(fiber.StatusNotFound).JSON(fiber.Map{})
 	}

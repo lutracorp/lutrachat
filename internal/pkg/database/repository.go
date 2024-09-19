@@ -13,10 +13,10 @@ func AddMany[T any](ctx context.Context, entities *[]T) error {
 }
 
 // GetOne returns single entity from database which matches passed params.
-func GetOne[T any](ctx context.Context, params *T) (*T, error) {
+func GetOne[T any](ctx context.Context, query interface{}, args ...interface{}) (*T, error) {
 	var entity T
 
-	if err := db.WithContext(ctx).Where(&params).First(&entity).Error; err != nil {
+	if err := db.WithContext(ctx).Where(query, args...).First(&entity).Error; err != nil {
 		return nil, err
 	}
 
@@ -24,10 +24,10 @@ func GetOne[T any](ctx context.Context, params *T) (*T, error) {
 }
 
 // GetMany returns multiple entities from database that matches passed params.
-func GetMany[T any](ctx context.Context, params *[]T) (*[]T, error) {
+func GetMany[T any](ctx context.Context, query interface{}, args ...interface{}) (*[]T, error) {
 	var entities []T
 
-	if err := db.WithContext(ctx).Where(&params).Find(&entities).Error; err != nil {
+	if err := db.WithContext(ctx).Where(query, args...).Find(&entities).Error; err != nil {
 		return nil, err
 	}
 

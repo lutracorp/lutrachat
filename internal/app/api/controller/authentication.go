@@ -13,7 +13,7 @@ import (
 
 // AuthenticationLogin retrieves an authentication token for the given credentials.
 func AuthenticationLogin(ctx *fiber.Ctx) error {
-	body := &model.LoginSchema{}
+	body := &model.AuthenticationLoginSchema{}
 	if err := ctx.BodyParser(body); err != nil {
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{})
 	}
@@ -44,7 +44,7 @@ func AuthenticationLogin(ctx *fiber.Ctx) error {
 			return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{})
 		}
 
-		tokr := &model.TokenResponse{Token: toks}
+		tokr := &model.AuthenticationTokenResponse{Token: toks}
 
 		return ctx.Status(fiber.StatusOK).JSON(tokr)
 	}
@@ -54,7 +54,7 @@ func AuthenticationLogin(ctx *fiber.Ctx) error {
 
 // AuthenticationRegister creates a new account and retrieves an authentication token for the given credentials.
 func AuthenticationRegister(ctx *fiber.Ctx) error {
-	body := &model.RegisterSchema{}
+	body := &model.AuthenticationRegisterSchema{}
 	if err := ctx.BodyParser(body); err != nil {
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{})
 	}
@@ -90,7 +90,7 @@ func AuthenticationRegister(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{})
 	}
 
-	tokr := &model.TokenResponse{Token: toks}
+	tokr := &model.AuthenticationTokenResponse{Token: toks}
 
 	return ctx.Status(fiber.StatusCreated).JSON(tokr)
 }

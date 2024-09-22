@@ -2,14 +2,15 @@ package database
 
 import (
 	"errors"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
-// db stores database definition.
-var db *gorm.DB
+// DB stores database definition.
+var DB *gorm.DB
 
 // newDialector creates database dialector for further use.
 func newDialector(config *Config) (gorm.Dialector, error) {
@@ -32,18 +33,18 @@ func Connect(config *Config) error {
 		return err
 	}
 
-	db, err = gorm.Open(dial)
+	DB, err = gorm.Open(dial)
 	return err
 }
 
 // Migrate automatically migrates database schema.
 func Migrate(models ...interface{}) error {
-	return db.AutoMigrate(models...)
+	return DB.AutoMigrate(models...)
 }
 
 // Disconnect disconnects gorm from database.
 func Disconnect() error {
-	sqlDB, err := db.DB()
+	sqlDB, err := DB.DB()
 	if err != nil {
 		return err
 	}

@@ -1,12 +1,13 @@
 package controller
 
 import (
+	"slices"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/lutracorp/foxid-go"
 	"github.com/lutracorp/lutrachat/internal/app/api/middleware"
 	"github.com/lutracorp/lutrachat/internal/app/api/model"
 	"github.com/lutracorp/lutrachat/internal/pkg/database"
-	"slices"
 )
 
 // ChannelGet returns a channel object for a given channel ID.

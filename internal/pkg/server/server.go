@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+
 	"github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
 )

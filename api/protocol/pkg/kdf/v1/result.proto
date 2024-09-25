@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package struct.v1;
+package pkg.kdf.v1;
 
 import "google/protobuf/any.proto";
 
-option go_package = "github.com/lutracorp/lutrachat/api/protocol/struct/v1";
+option go_package = "github.com/lutracorp/lutrachat/api/protocol/pkg/kdf/v1";
 
 // Represents all the data required to check the input data for validity.
 message KdfResult {

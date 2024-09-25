@@ -3,7 +3,7 @@ package middleware
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/lutracorp/foxid-go"
-	v1 "github.com/lutracorp/lutrachat/api/protocol/struct/v1"
+	"github.com/lutracorp/lutrachat/api/protocol/pkg/token/v1"
 	"github.com/lutracorp/lutrachat/internal/pkg/database"
 	"github.com/lutracorp/lutrachat/internal/pkg/token"
 	"google.golang.org/protobuf/proto"

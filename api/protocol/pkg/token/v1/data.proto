@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package struct.v1;
+package pkg.token.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/lutracorp/lutrachat/api/protocol/struct/v1";
+option go_package = "github.com/lutracorp/lutrachat/api/protocol/pkg/token/v1";
 
 // The data contained in the token.
 message TokenData {

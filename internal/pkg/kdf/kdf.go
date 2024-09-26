@@ -3,6 +3,7 @@ package kdf
 import (
 	"bytes"
 	"crypto/rand"
+
 	"github.com/lutracorp/lutrachat/api/protocol/pkg/kdf/v1"
 	"golang.org/x/crypto/argon2"
 )

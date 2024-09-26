@@ -3,6 +3,7 @@ package token
 import (
 	"bytes"
 	"encoding/base64"
+
 	"github.com/lutracorp/lutrachat/api/protocol/pkg/token/v1"
 	"golang.org/x/crypto/poly1305"
 	"google.golang.org/protobuf/proto"

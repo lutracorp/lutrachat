@@ -7,7 +7,7 @@ import (
 )
 
 // MessageRoute binds message related routes to server.
-func MessageRoute(srv *fiber.App) error {
+func MessageRoute(srv *fiber.App) {
 	rg := srv.Group("/channels/:channel/messages", middleware.Authorization, middleware.Channel("channel"), middleware.Recipient)
 
 	rg.Get("/", controller.MessageList)
@@ -16,6 +16,4 @@ func MessageRoute(srv *fiber.App) error {
 	mg := rg.Group("/:message")
 
 	mg.Get("/", controller.MessageGet)
-
-	return nil
 }

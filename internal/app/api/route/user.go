@@ -7,11 +7,9 @@ import (
 )
 
 // UserRoute binds user related routes to server.
-func UserRoute(srv *fiber.App) error {
+func UserRoute(srv *fiber.App) {
 	group := srv.Group("/users", middleware.Authorization)
 
 	group.Get("/@me", controller.UserGetCurrent)
 	group.Get("/:user", controller.UserGet)
-
-	return nil
 }

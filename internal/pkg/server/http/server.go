@@ -1,14 +1,15 @@
-package server
+package http
 
 import (
 	"fmt"
 
 	"github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
+	"github.com/lutracorp/lutrachat/internal/pkg/server"
 )
 
 // Delegate provides capability to execute function with server as argument.
-type Delegate = func(*fiber.App) error
+type Delegate = func(*fiber.App)
 
 const appName = "LutraChat"
 
@@ -23,21 +24,17 @@ var srv = fiber.New(
 )
 
 // Listen binds server according to passed configuration.
-func Listen(config *Config) error {
+func Listen(config *server.Config) error {
 	address := fmt.Sprintf("%s:%d", config.Address, config.Port)
 
 	return srv.Listen(address)
 }
 
-// Use runs delegate on a server.
-func Use(delegate ...Delegate) error {
+// Use runs delegate on the server.
+func Use(delegate ...Delegate) {
 	for _, delegate := range delegate {
-		if err := delegate(srv); err != nil {
-			return err
-		}
+		delegate(srv)
 	}
-
-	return nil
 }
 
 // Close shutdown's server.

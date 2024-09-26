@@ -6,11 +6,9 @@ import (
 )
 
 // AuthenticationRoute binds authentication related routes to server.
-func AuthenticationRoute(srv *fiber.App) error {
+func AuthenticationRoute(srv *fiber.App) {
 	rg := srv.Group("/authentication")
 
 	rg.Post("/login", controller.AuthenticationLogin)
 	rg.Post("/register", controller.AuthenticationRegister)
-
-	return nil
 }

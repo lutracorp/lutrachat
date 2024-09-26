@@ -7,10 +7,8 @@ import (
 )
 
 // RecipientRoute binds message related routes to server.
-func RecipientRoute(srv *fiber.App) error {
+func RecipientRoute(srv *fiber.App) {
 	rg := srv.Group("/channels/:channel/recipients", middleware.Authorization, middleware.Channel("channel"), middleware.Recipient)
 
 	rg.Get("/", controller.RecipientList)
-
-	return nil
 }

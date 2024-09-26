@@ -7,6 +7,6 @@ import (
 
 // Config represents API configuration.
 type Config struct {
-	Server   server.Config   `hcl:"server,block"`   // Server listener configuration.
+	Http     server.Config   `hcl:"http,block"`     // Server listener configuration.
 	Database database.Config `hcl:"database,block"` // Database connection configuration.
 }

@@ -1,6 +1,7 @@
 package http
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/goccy/go-json"
@@ -19,9 +20,22 @@ var srv = fiber.New(
 		JSONEncoder:  json.Marshal,
 		JSONDecoder:  json.Unmarshal,
 		ServerHeader: appName,
-		ErrorHandler: nil,
+		ErrorHandler: errorHandler,
 	},
 )
+
+// errorHandler executed when handler returns error.
+func errorHandler(ctx *fiber.Ctx, err error) error {
+	var he *Error
+	if !errors.As(err, &he) {
+		he = &Error{
+			Kind: server.GeneralErrorKind,
+			Code: server.UnknownErrorCode,
+		}
+	}
+
+	return ctx.Status(fiber.StatusExpectationFailed).JSON(he)
+}
 
 // Listen binds server according to passed configuration.
 func Listen(config *server.Config) error {

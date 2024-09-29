@@ -30,7 +30,7 @@ func errorHandler(ctx *fiber.Ctx, err error) error {
 	if !errors.As(err, &he) {
 		he = &Error{
 			Kind: server.GeneralErrorKind,
-			Code: server.UnknownErrorCode,
+			Code: server.UnknownGeneralErrorCode,
 		}
 	}
 

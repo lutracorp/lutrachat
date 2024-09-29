@@ -1,7 +1,10 @@
 package http
 
-import "fmt"
-import "github.com/lutracorp/lutrachat/internal/pkg/server"
+import (
+	"fmt"
+
+	"github.com/lutracorp/lutrachat/internal/pkg/server"
+)
 
 // Error represents http server error.
 type Error struct {

@@ -28,10 +28,7 @@ var srv = fiber.New(
 func errorHandler(ctx *fiber.Ctx, err error) error {
 	var he *Error
 	if !errors.As(err, &he) {
-		he = &Error{
-			Kind: server.GeneralErrorKind,
-			Code: server.UnknownGeneralErrorCode,
-		}
+		he = GeneralError
 	}
 
 	return ctx.Status(fiber.StatusExpectationFailed).JSON(he)

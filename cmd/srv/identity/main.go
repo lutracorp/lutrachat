@@ -4,11 +4,11 @@ import (
 	"github.com/hashicorp/hcl/v2/hclsimple"
 	"github.com/lutracorp/lutrachat/internal/pkg/database"
 	"github.com/lutracorp/lutrachat/internal/pkg/server/http"
-	"github.com/lutracorp/lutrachat/internal/srv/authentication"
+	"github.com/lutracorp/lutrachat/internal/srv/identity"
 )
 
 func main() {
-	var cfg authentication.Config
+	var cfg identity.Config
 	if err := hclsimple.DecodeFile("config.hcl", nil, &cfg); err != nil {
 		panic(err)
 	}
@@ -21,7 +21,7 @@ func main() {
 		panic(err)
 	}
 
-	http.Use(authentication.Route)
+	http.Use(identity.Route)
 	if err := http.Listen(&cfg.Http); err != nil {
 		panic(err)
 	}

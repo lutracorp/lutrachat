@@ -26,12 +26,12 @@ var srv = fiber.New(
 
 // errorHandler executed when handler returns error.
 func errorHandler(ctx *fiber.Ctx, err error) error {
-	var he *Error
-	if !errors.As(err, &he) {
-		he = GeneralError
+	var e *Error
+	if !errors.As(err, &e) {
+		e = GeneralError
 	}
 
-	return ctx.Status(fiber.StatusExpectationFailed).JSON(he)
+	return ctx.Status(e.Status).JSON(e)
 }
 
 // Listen binds server according to passed configuration.

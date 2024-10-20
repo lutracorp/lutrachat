@@ -3,7 +3,8 @@ package controller
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/lutracorp/foxid-go"
-	"github.com/lutracorp/lutrachat/api/protocol/pkg/kdf/v1"
+	kdfpb "github.com/lutracorp/lutrachat/api/protocol/pkg/kdf/v1"
+	tokpb "github.com/lutracorp/lutrachat/api/protocol/pkg/token/v1"
 	"github.com/lutracorp/lutrachat/internal/pkg/database"
 	"github.com/lutracorp/lutrachat/internal/pkg/kdf"
 	"github.com/lutracorp/lutrachat/internal/pkg/server/http"
@@ -24,7 +25,7 @@ func AccountLogin(ctx *fiber.Ctx) error {
 		return http.InvalidCredentialsRestrictionError
 	}
 
-	kr := &v1.KdfResult{}
+	kr := &kdfpb.KdfResult{}
 	if err := proto.Unmarshal(user.Password, kr); err != nil {
 		return http.GeneralError
 	}
@@ -40,7 +41,7 @@ func AccountLogin(ctx *fiber.Ctx) error {
 			return http.GeneralError
 		}
 
-		toks, err := token.Marshal(tok)
+		toks, err := tokpb.Marshal(tok)
 		if err != nil {
 			return http.GeneralError
 		}
@@ -80,7 +81,7 @@ func AccountRegister(ctx *fiber.Ctx) error {
 		return http.GeneralError
 	}
 
-	toks, err := token.Marshal(tok)
+	toks, err := tokpb.Marshal(tok)
 	if err != nil {
 		return http.GeneralError
 	}

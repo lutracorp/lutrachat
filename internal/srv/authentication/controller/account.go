@@ -17,7 +17,7 @@ import (
 func AccountLogin(ctx *fiber.Ctx) error {
 	body := &model.AccountLoginSchema{}
 	if err := ctx.BodyParser(body); err != nil {
-		return http.MalformedBodyValidationError
+		return http.MalformedRequestValidationError
 	}
 
 	user, err := database.GetOne[database.User](ctx.Context(), "email = ?", body.Email)
@@ -57,7 +57,7 @@ func AccountLogin(ctx *fiber.Ctx) error {
 func AccountRegister(ctx *fiber.Ctx) error {
 	body := &model.AccountRegisterSchema{}
 	if err := ctx.BodyParser(body); err != nil {
-		return http.MalformedBodyValidationError
+		return http.MalformedRequestValidationError
 	}
 
 	kr, err := kdf.Derive([]byte(body.Password))

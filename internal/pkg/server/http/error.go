@@ -30,13 +30,19 @@ func NewError(kind ErrorKind, code ErrorCode, status int) *Error {
 }
 
 const (
-	validationErrorKind  ErrorKind = iota + 1 // Validation related errors.
-	limitationErrorKind                       // Resource limitation errors.
-	restrictionErrorKind                      // Access restriction errors.
+	generalErrorKind     ErrorKind = iota // General errors.
+	validationErrorKind                   // Validation related errors.
+	limitationErrorKind                   // Resource limitation errors.
+	restrictionErrorKind                  // Access restriction errors.
+	unknownErrorKind                      // Unknown resource errors.
 )
 
 const (
-	malformedBodyValidationErrorCode ErrorCode = iota + 1 // Malformed request body received.
+	generalErrorCode ErrorCode = iota // Any error don't covered with errors below.
+)
+
+const (
+	malformedRequestValidationErrorCode ErrorCode = iota + 1 // Malformed request body received.
 )
 
 const (
@@ -47,14 +53,21 @@ const (
 	invalidCredentialsRestrictionErrorCode ErrorCode = iota + 1 // Invalid credentials passed.
 )
 
-// GeneralError represents errors such as an internal server error.
-var GeneralError = NewError(0, 0, fiber.StatusTeapot)
+const (
+	userUnknownErrorCode ErrorCode = iota + 1 // Indicates that's requested user doesn't exist.
+)
 
-// MalformedBodyValidationError means that the server received data that it cannot understand.
-var MalformedBodyValidationError = NewError(validationErrorKind, malformedBodyValidationErrorCode, fiber.StatusBadRequest)
+// GeneralError represents errors such as an internal server error.
+var GeneralError = NewError(generalErrorKind, generalErrorCode, fiber.StatusTeapot)
+
+// MalformedRequestValidationError means that the server received request data that it cannot understand.
+var MalformedRequestValidationError = NewError(validationErrorKind, malformedRequestValidationErrorCode, fiber.StatusBadRequest)
 
 // CredentialsAlreadyUsedLimitationError means that someone has already registered using these credentials.
 var CredentialsAlreadyUsedLimitationError = NewError(limitationErrorKind, credentialsAlreadyUsedLimitationCode, fiber.StatusConflict)
 
 // InvalidCredentialsRestrictionError means that you passed incorrect credentials.
 var InvalidCredentialsRestrictionError = NewError(restrictionErrorKind, invalidCredentialsRestrictionErrorCode, fiber.StatusUnauthorized)
+
+// UserUnknownError means that you requested user that don't exist.
+var UserUnknownError = NewError(unknownErrorKind, userUnknownErrorCode, fiber.StatusNotFound)

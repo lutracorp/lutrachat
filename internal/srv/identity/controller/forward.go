@@ -3,19 +3,23 @@ package controller
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/lutracorp/foxid-go"
-	v1 "github.com/lutracorp/lutrachat/api/protocol/pkg/token/v1"
+	tknpb "github.com/lutracorp/lutrachat/api/protocol/pkg/token/v1"
 	"github.com/lutracorp/lutrachat/internal/pkg/database"
 	"github.com/lutracorp/lutrachat/internal/pkg/server/http"
 	"github.com/lutracorp/lutrachat/internal/pkg/token"
 	"google.golang.org/protobuf/proto"
 )
 
+const (
+	headerXUserID = "X-User-Id" // Header used to store authenticated user id.
+)
+
 // Forward forwards authorization data to proxy.
 func Forward(ctx *fiber.Ctx) error {
-	header := ctx.Get("Authorization")
+	header := ctx.Get(fiber.HeaderAuthorization)
 
-	data := &v1.TokenData{}
-	if err := v1.Unmarshal(header, data); err != nil {
+	data := &tknpb.TokenData{}
+	if err := tknpb.Unmarshal(header, data); err != nil {
 		return http.InvalidCredentialsRestrictionError
 	}
 	if proto.Size(data) == 0 || len(data.Payload) != 16 {
@@ -32,6 +36,7 @@ func Forward(ctx *fiber.Ctx) error {
 		return http.InvalidCredentialsRestrictionError
 	}
 
-	ctx.Set("X-User-Id", user.ID)
+	ctx.Set(headerXUserID, user.ID)
+
 	return ctx.SendStatus(fiber.StatusNoContent)
 }

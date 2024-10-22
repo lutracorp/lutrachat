@@ -10,6 +10,6 @@ import (
 func Route(app *fiber.App) {
 	root := app.Group("/users", middleware.Forward)
 
-	root.Get("/:user_id", controller.Get)
 	root.Get("/@me", middleware.User, controller.GetCurrent)
+	root.Get("/:user_id", controller.Get)
 }

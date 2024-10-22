@@ -7,7 +7,9 @@ require (
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/hashicorp/hcl/v2 v2.22.0
 	github.com/lutracorp/foxid-go v1.3.0
+	github.com/samber/lo v1.47.0
 	golang.org/x/crypto v0.26.0
+	google.golang.org/grpc v1.67.0
 	google.golang.org/protobuf v1.34.2
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/driver/postgres v1.5.9
@@ -48,5 +50,4 @@ require (
 	golang.org/x/text v0.17.0 // indirect
 	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240814211410-ddb44dafa142 // indirect
-	google.golang.org/grpc v1.67.0 // indirect
 )

@@ -54,7 +54,8 @@ const (
 )
 
 const (
-	userUnknownErrorCode ErrorCode = iota + 1 // Indicates that's requested user doesn't exist.
+	userUnknownErrorCode    ErrorCode = iota + 1 // Indicates that's requested user doesn't exist.
+	channelUnknownErrorCode                      // Indicates that's requested channel doesn't exist.
 )
 
 // GeneralError represents errors such as an internal server error.
@@ -69,5 +70,7 @@ var CredentialsAlreadyUsedLimitationError = NewError(limitationErrorKind, creden
 // InvalidCredentialsRestrictionError means that you passed incorrect credentials.
 var InvalidCredentialsRestrictionError = NewError(restrictionErrorKind, invalidCredentialsRestrictionErrorCode, fiber.StatusUnauthorized)
 
-// UserUnknownError means that you requested user that don't exist.
-var UserUnknownError = NewError(unknownErrorKind, userUnknownErrorCode, fiber.StatusNotFound)
+var (
+	UserUnknownError    = NewError(unknownErrorKind, userUnknownErrorCode, fiber.StatusNotFound)    // UserUnknownError means that you requested user that don't exist.
+	ChannelUnknownError = NewError(unknownErrorKind, channelUnknownErrorCode, fiber.StatusNotFound) // ChannelUnknownError means that you requested channel that don't exist.
+)
